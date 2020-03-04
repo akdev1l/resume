@@ -1,0 +1,128 @@
+%!TEX TS-program = xelatex
+\documentclass[]{friggeri-cv}
+\usepackage{afterpage}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{progressbar}
+\hypersetup{
+    pdftitle={Edgard(Alex) Arvelaez - Resume},
+    pdfauthor={Edgard(Alex) Arvelaez},
+    pdfsubject={Resume},
+    pdfkeywords={resume,office,communications,skill,edgard,arvelaez,devops},
+    colorlinks=false,       % no lik border color
+   allbordercolors=white    % white border color for all
+}
+% \addbibresource{bibliography.bib}
+\RequirePackage{xcolor}
+\definecolor{pblue}{HTML}{0395DE}
+
+\begin{document}
+\header{Alex}{ Arvelaez}
+      {}
+      
+% Fake text to add separator      
+\fcolorbox{white}{gray}{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule}{%
+.....
+}}
+
+% In the aside, each new line forces a line break
+\begin{aside}
+  \section{Address}
+    Toronto, ON, Canada
+    ~
+  \section{Telephone}
+    +1 (647) - 606 2058
+    ~
+  \section{Mail}
+    \href{mailto:alex@akdev.xyz}{\textbf{alex@}\\akdev.xyz}
+    ~
+  \section{Technical Skills}
+    \begin{tabular}{p{1.1cm} p{2.5cm}}
+      \progressbar[width=1.1cm,filledcolor=green]{1} & {Linux Admin} \\
+      \progressbar[width=1.1cm,filledcolor=green]{1} & {Shell} \\
+      \progressbar[width=1.1cm,filledcolor=green]{0.9} & {Ansible} \\
+      \progressbar[width=1.1cm,filledcolor=green]{0.85} & {Jenkins} \\
+      \progressbar[width=1.1cm,filledcolor=green]{0.85} & {Python} \\
+      \progressbar[width=1.1cm,filledcolor=green]{0.8} & {Documentation} \\
+    \end{tabular}
+    ~
+  \section{Personal Skills}
+    \begin{tabular}{p{1.2cm} p{2.0cm}}
+      \progressbar[width=1.1cm,filledcolor=blue]{1.0} & {Accountability} \\
+      \progressbar[width=1.1cm,filledcolor=blue]{1.0} & {Collaboration} \\
+      \progressbar[width=1.1cm,filledcolor=blue]{1.0} & {Organization} \\
+    \end{tabular}
+    ~
+  \section{Projects}
+    \bullet\hspace{0.2cm}Personal Intranet
+    \bullet\hspace{0.2cm}Pi3 Cluster
+    \bullet\hspace{0.2cm}Python Bots
+    \bullet\hspace{0.2cm}Resume in LaTeX
+    ~
+  \section{Technologies}
+    \bullet\hspace{0.2cm}New Relic
+    \bullet\hspace{0.2cm}ELK
+    \bullet\hspace{0.2cm}Docker
+    ~
+  \section{Github}
+    \href{https://github.com/e4lejandr0}{https://github.com/e4lejandr0}
+    ~
+\end{aside}
+
+\section{Experience}
+\begin{entrylist}
+  \entry
+    {01/18 - 04/18}
+    {DevOps Engineer}
+    {Fundserv}
+    {Impletemented a fully-automated pipeline to provision VMs on VMware ESXi using Jenkins and Ansible.\\
+    Developed automated build, package and deployment procedure which was implemented across multiple applications with a centralized ci infrastructure.\\
+    Created standardized systemd services for easy startup and shutdown of applications.\\
+    Developed customized ansible inventory plugin to get inventory information via the vSphere Automation SDK.\\}
+  \entry
+    {05/18 - 08/19}
+    {Software Developer(Co-Op)}
+    {Fundserv}
+    {Developing new or making changes to existing software programs, web or mobile applications.\\
+    Assisting in automation of new or existing processes.\\
+    Designing and implementing scalable, reliable and easily maintainable solutions.\\}
+  \entry
+    {01/18 - 04/18}
+    {Peer Tutor}
+    {Seneca College}
+    {Provided one-on-one academic support in specific subject areas.\\
+    Facilitated independent learning by helping tutees discover their own answers and insights.\\
+    Provided academic assistance by personalizing instruction and reviewing course material.\\}
+  \entry
+    {05/17 - 12/17}
+    {Unix Automation Developer(Co-Op)}
+    {Fundserv}
+    {Maintained an internal website for the System Operations team.\\
+    Developed automation of alerts and health checks as well as report generating for the internal website.\\
+    Developed a new automated process to startup the company's applications.\\}
+\end{entrylist}
+
+\section{Education}
+\begin{entrylist}
+  \entry
+    {2019}
+    {Red Hat Certified Systems Administrator}
+    {Red Hat}
+    {Completed two Red Hat courses and was able to successfully obtain the RHCSA certification.}
+  \entry
+    {2019}
+    {Red Hat Certified Ansible Specialist}
+    {Red Hat}
+    {Self-taugh Ansible and was able to obtain the specialist-level certification on it.\\
+    \emph{}\\}
+  \entry
+    {2016 - 2018}
+    {Computer Programming Diploma}
+    {Seneca College}
+    {Strong focus on hands-on experience with industry standard technologies .\\
+    Main subjects: Object-Oriented Software Development Using C++, Database Design II and SQL Using Oracle, Java for C++ Programmers.\\
+    {GPA: \emph{3.8}\\}
+    \emph{}\\}
+\end{entrylist}
+\end{document}
