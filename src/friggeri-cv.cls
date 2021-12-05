@@ -97,7 +97,7 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 ]
 {texgyreheros-regular.otf}
 
-\setmathfont{texgyreheros-regular.otf}
+\setmathfont{TeX Gyre Heros}
 %%%
 
 %%%%%%%%%%
