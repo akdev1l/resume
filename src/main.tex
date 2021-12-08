@@ -5,13 +5,15 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{progressbar}
+% remove link decorations: https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks
 \hypersetup{
     pdftitle={Edgard(Alex) Arvelaez - Resume},
     pdfauthor={Edgard(Alex) Arvelaez},
     pdfsubject={Resume},
     pdfkeywords={resume,office,communications,skill,edgard,arvelaez,devops},
+    pdfborder=0 0 0,
     colorlinks=false,       % no lik border color
-   allbordercolors=white    % white border color for all
+    allbordercolors=white    % white border color for all
 }
 % \addbibresource{bibliography.bib}
 \RequirePackage{xcolor}
@@ -32,7 +34,7 @@
     Toronto, ON, Canada
     ~
   \section{Github}
-    https://github.com/akdev1l
+    \href{https://github.com/akdev1l}{https://github.com/akdev1l}
     ~
   \section{Mail}
     \href{mailto:alex@akdev.xyz}{\textbf{alex@}\\akdev.xyz}
@@ -56,9 +58,9 @@
     ~
   \section{Projects}
     \bullet\hspace{0.2cm}Terraform + Ansible IaC Intranet
-    \bullet\hspace{0.2cm}mouse\_m908 Fedora Packaging
-    \bullet\hspace{0.2cm}Expose OpenVSwitch external-ids on nmcli
-    \bullet\hspace{0.2cm}Bug Triaging for AlmaLinux Project
+    \bullet\hspace{0.2cm}\href{https://github.com/dokutan/mouse_m908/pull/12}{mouse\_m908 FOSS Contributions}
+    \bullet\hspace{0.2cm}\href{https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/679}{Expose OVS external-ids on nmcli}
+    \bullet\hspace{0.2cm}\href{https://bugs.almalinux.org/view.php?id=151}{Bug Triaging for AlmaLinux Project}
     ~
   \section{Technologies}
     \bullet\hspace{0.2cm}AWS CDK
@@ -81,7 +83,7 @@
         \item Developed pipeline a scanning tool to analyze full CD best practices on over 1000 pipelines.
         \item Adjusted alarms to minimize false alerts to avoid alarm fatigue and decrease manual effort in ticket triaging.
         \item Migrated an internal website from AL1(based on RHEL5) to AL2 by updating the build system and updating all dependencies and fixing broken functionality.
-        \item Improved an internal tool for automatic dashboard generation taking defined alert thesholds into account.
+        \item Improved an internal tool for automatic dashboard generation taking defined alert thresholds into account.
     \end{itemize}}
   \entry
     {05/17 - 05/2020}
@@ -92,7 +94,7 @@
         \item Developed automated build, package and deployment procedure which was implemented across multiple applications with a centralized ci infrastructure.
         \item Created standardized systemd services for easy startup and shutdown of applications.
         \item Developed customized ansible inventory plugin to get inventory information via the vSphere Automation SDK.
-        \item Developed an three-tiered Angular/Springboot-based Java application from scratch.
+        \item Developed a three-tiered Angular/Springboot Java application for accounting.
         \item Developed and maintained an internal monitoring website for the Systems Operations team.
         \item Developed a new service management facility built on ksh88.
     \end{itemize}}

@@ -78,24 +78,12 @@
 % \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 \RequirePackage{unicode-math}
 
-\newfontfamily\bodyfont
-[Path=fonts/,
-BoldFont=texgyreheros-bold.otf,
-ItalicFont=texgyreheros-italic.otf,
-BoldItalicFont=texgyreheros-bolditalic.otf]
-{texgyreheros-regular.otf}
-\newfontfamily\thinfont[Path=fonts/]{Lato-Hairline.ttf}
-\newfontfamily\headingfont[Path=fonts/]{texgyreheros-bold.otf}
+\newfontfamily\bodyfont{TeX Gyre Heros}
+\newfontfamily\thinfont{Lato Light}
+\newfontfamily\headingfont{TeX Gyre Heros}
 
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont
-[Path=fonts/,
-Mapping=tex-text, Color=textcolor,
-BoldFont=texgyreheros-bold.otf,
-ItalicFont=texgyreheros-italic.otf,
-BoldItalicFont=texgyreheros-bolditalic.otf
-]
-{texgyreheros-regular.otf}
+\setmainfont[Mapping=tex-text, Color=textcolor]{TeX Gyre Heros}
 
 \setmathfont{TeX Gyre Heros}
 %%%
