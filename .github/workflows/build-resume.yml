@@ -12,8 +12,18 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: |
-          dnf install -y /usr/bin/xelatex texlive-parskip make lilypond-texgyre-heros-fonts texlive-textpos texlive-biblatex texlive-progressbar texlive-firstaid
-          ls && pwd
+          dnf install -y \
+            /usr/bin/xelatex \
+            texlive-parskip \
+            make \
+            lilypond-texgyre-heros-fonts \
+            texlive-textpos \
+            texlive-biblatex \
+            texlive-progressbar \
+            texlive-firstaid \
+            lato-fonts \
+            texlive-lato \
+            texlive-tex-gyre
           make
       - uses: actions/upload-artifact@v2
         with:
