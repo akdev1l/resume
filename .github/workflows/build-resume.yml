@@ -1,0 +1,21 @@
+name: refresh resume
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-resume:
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: |
+          dnf install -y /usr/bin/xelatex texlive-parskip make lilypond-texgyre-heros-fonts texlive-textpos texlive-biblatex texlive-progressbar texlive-firstaid
+          ls && pwd
+          make
+      - uses: actions/upload-artifact@v2
+        with:
+          name: resume-latest.pdf
+          path: ./output/main.pdf
