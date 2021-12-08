@@ -82,8 +82,8 @@
 \newfontfamily\thinfont{Lato Light}
 \newfontfamily\headingfont{TeX Gyre Heros}
 
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Mapping=tex-text, Color=textcolor]{TeX Gyre Heros}
+% \defaultfontfeatures{Mapping=tex-text}
+\setmainfont[Color=textcolor]{TeX Gyre Heros}
 
 \setmathfont{TeX Gyre Heros}
 %%%
@@ -139,7 +139,7 @@
 %}
 
 \newcounter{colorCounter}
-\def\@sectioncolor#1#2#3{%
+\def\@sectioncolor#1{%
   {%
     \color{%
       \ifcase\value{colorCounter}%
@@ -149,7 +149,7 @@
         pblue\or%
         pblue\else%
         pblue\fi%
-    } #1#2#3%
+    } #1%
   }%
   \stepcounter{colorCounter}%
 }
@@ -189,7 +189,7 @@
   \item[#1]
     \textbf{#2}%
     \hfill%
-    {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
+    {\textit{\addfontfeature{Color=pblue}#3}}\\%
     #4\vspace{\parsep}%
   }
 
