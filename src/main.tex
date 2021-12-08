@@ -55,15 +55,18 @@
     \end{tabular}
     ~
   \section{Projects}
-    \bullet\hspace{0.2cm}Personal Intranet
-    \bullet\hspace{0.2cm}Pi3 Cluster
-    \bullet\hspace{0.2cm}Python Bots
-    \bullet\hspace{0.2cm}Resume in LaTeX
+    \bullet\hspace{0.2cm}Terraform + Ansible IaC Intranet
+    \bullet\hspace{0.2cm}mouse\_m908 Fedora Packaging
+    \bullet\hspace{0.2cm}Expose OpenVSwitch external-ids on nmcli
+    \bullet\hspace{0.2cm}Bug Triaging for AlmaLinux Project
     ~
   \section{Technologies}
     \bullet\hspace{0.2cm}AWS CDK
-    \bullet\hspace{0.2cm}Java
-    \bullet\hspace{0.2cm}Python
+    \bullet\hspace{0.2cm}CloudFormation
+    \bullet\hspace{0.2cm}Jenkins
+    \bullet\hspace{0.2cm}Ansible
+    \bullet\hspace{0.2cm}libvirt/qemu/kvm
+    \bullet\hspace{0.2cm}Linux
     ~
 \end{aside}
 
@@ -73,55 +76,49 @@
     {06/20 - Now}
     {DevOps Engineer}
     {Amazon}
-    {Support multiple teams on high severity and low severity incidents decreasing resolution time. \\
-    Simplified and automated manual onboarding procedures to increase system stability and minimize ongoing manual effort.
-    Adjusted alarms to minimize false alerts to avoid alarm fatigue and decrease manual effort in ticket triaging.
-    Documented frequent steps for common incidents allowing for faster and more consistent incident resolution.}
+    {\begin{itemize}
+        \item Support multiple teams on high severity and low severity incidents decreasing resolution time.
+        \item Developed pipeline a scanning tool to analyze full CD best practices on over 1000 pipelines.
+        \item Adjusted alarms to minimize false alerts to avoid alarm fatigue and decrease manual effort in ticket triaging.
+        \item Migrated an internal website from AL1(based on RHEL5) to AL2 by updating the build system and updating all dependencies and fixing broken functionality.
+        \item Improved an internal tool for automatic dashboard generation taking defined alert thesholds into account.
+    \end{itemize}}
   \entry
-    {10/18 - 05/2020}
+    {05/17 - 05/2020}
     {Systems Engineer}
     {Fundserv}
-    {Impletemented a fully-automated pipeline to provision VMs on VMware ESXi using Jenkins and Ansible.\\
-    Developed automated build, package and deployment procedure which was implemented across multiple applications with a centralized ci infrastructure.\\
-    Created standardized systemd services for easy startup and shutdown of applications.\\
-    Developed customized ansible inventory plugin to get inventory information via the vSphere Automation SDK.\\}
-  \entry
-    {05/18 - 09/18}
-    {Software Developer(Co-Op)}
-    {Fundserv}
-    {Developed an Angular/Springboot-based Java application from scratch. Provided a REST API served to \\
-    a web application powered by Angular 2. \\
-    Assisted in automation of new and existing processes.\\
-    Designed and implemented scalable, reliable and easily maintainable solutions.\\}
-  \entry
-    {05/17 - 12/17}
-    {Unix Automation Developer(Co-Op)}
-    {Fundserv}
-    {Maintained an internal website for the Systems Operations team.\\
-    Developed automation of alerts and health checks as well as report generating for the internal website.\\
-    Developed a new automated process to startup the company's applications.\\}
+    {\begin{itemize}
+        \item Impletemented a fully-automated pipeline to provision VMs on VMware ESXi using Jenkins and Ansible.
+        \item Developed automated build, package and deployment procedure which was implemented across multiple applications with a centralized ci infrastructure.
+        \item Created standardized systemd services for easy startup and shutdown of applications.
+        \item Developed customized ansible inventory plugin to get inventory information via the vSphere Automation SDK.
+        \item Developed an three-tiered Angular/Springboot-based Java application from scratch.
+        \item Developed and maintained an internal monitoring website for the Systems Operations team.
+        \item Developed a new service management facility built on ksh88.
+    \end{itemize}}
 \end{entrylist}
 
 \section{Education}
 \begin{entrylist}
   \entry
+    {2021}
+    {AWS Cloud Practitioner}
+    {Amazon Web Services}
+    {Obtained the Cloud Practitioner certitication as an opening in the AWS Skill Tree.}
+  \entry
     {2019}
     {Red Hat Certified Systems Administrator}
     {Red Hat}
-    {Completed two Red Hat courses and was able to successfully obtain the RHCSA certification.}
+    {Obtained the RHCSA certification after attending Red Hat training sessions.}
   \entry
     {2019}
     {Red Hat Certified Ansible Specialist}
     {Red Hat}
-    {Self-taugh Ansible and was able to obtain the specialist-level certification on it.\\
-    \emph{}\\}
+    {Self-taugh Ansible and was able to obtain the specialist-level certification on it.}
   \entry
     {2016 - 2018}
     {Computer Programming Diploma}
     {Seneca College}
-    {Strong focus on hands-on experience with industry standard technologies .\\
-    {GPA: \emph{3.8}\\}
-    \\}
+    {Strong focus on hands-on experience with industry standard technologies.}
 \end{entrylist}
-\let\clearpage\relax
 \end{document}
