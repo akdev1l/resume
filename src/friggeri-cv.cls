@@ -81,9 +81,10 @@
 \newfontfamily\bodyfont{TeX Gyre Heros}
 \newfontfamily\thinfont{Lato Light}
 \newfontfamily\headingfont{TeX Gyre Heros}
+\newfontfamily\boldfont{TeX Gyre Heros Bold}
 
 % \defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Color=textcolor]{TeX Gyre Heros}
+\setmainfont[Color=textcolor, BoldFont={TeX Gyre Heros Bold}]{TeX Gyre Heros}
 
 \setmathfont{TeX Gyre Heros}
 %%%
@@ -171,7 +172,7 @@
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
 \newcommand{\entry}[4]{%
   \item[#1]
-    | \textbf{#2}%
+    {\addfontfeature{Color=pblue}|} {\boldfont{#2}}%
     \hfill%
     {\textit{\addfontfeature{Color=pblue}#3}}\\%
     #4\vspace{\parsep}%
