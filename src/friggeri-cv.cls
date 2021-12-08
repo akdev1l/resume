@@ -138,27 +138,11 @@
 %  \stepcounter{colorCounter}%
 %}
 
-\newcounter{colorCounter}
-\def\@sectioncolor#1{%
-  {%
-    \color{%
-      \ifcase\value{colorCounter}%
-        pblue\or%
-        pblue\or%
-        pblue\or%
-        pblue\or%
-        pblue\else%
-        pblue\fi%
-    } #1%
-  }%
-  \stepcounter{colorCounter}%
-}
-
 \renewcommand{\section}[1]{
   \par\vspace{\parskip}
   {%
     \LARGE\headingfont\color{headercolor}%
-    \@sectioncolor #1%
+    #1%
   }
   \par\vspace{\parskip}
 }
@@ -187,7 +171,7 @@
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
 \newcommand{\entry}[4]{%
   \item[#1]
-    \textbf{#2}%
+    | \textbf{#2}%
     \hfill%
     {\textit{\addfontfeature{Color=pblue}#3}}\\%
     #4\vspace{\parsep}%
