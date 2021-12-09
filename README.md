@@ -1,5 +1,8 @@
 # akdev's resume
 
+
+You can find the build output [here](https://akdev1l.github.io/resume/main.pdf) or [here](/docs/main.pdf).
+
 ## Problem
 
 Keeping my resume up to date is a chore. I do not enjoy dealing with word processing software.
