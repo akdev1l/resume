@@ -2,12 +2,11 @@
 
 ## Problem
 
-Keeping my resume up to date is a chore. I hate dealing with word processing software.
-Versioning in most word processing software also sucks and diffing capabilities are limited.
+Keeping my resume up to date is a chore. I do not enjoy dealing with word processing software.
+Versioning in most word processing software also has very interesting interfaces and diffing capabilities are limited.
 
 As a result I used to not keep my resume up to date and creating resumes adhoc whenever
 I needed one. 
-
 
 ## Solution (maybe?)
 
@@ -18,7 +17,8 @@ me to learn LaTeX.
 As result I have created this project. It contains my resume in LaTeX format along with a basic
 cd/ci pipeline that builds each commit.
 
-I can now keep track of all the changes and diff between versions. :) 
+I can now keep track of all the changes and diff between versions. I also keep my resume up to
+date because I find learning LaTeX quite entertaining. :)
 
 
 ## How to build
