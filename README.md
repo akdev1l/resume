@@ -2,8 +2,8 @@
 
 ## Problem
 
-Keeping my resume up to date is a shore. I hate dealing with word processing software.
-versioning in most word processing software sucks and diffing capabilities are limited.
+Keeping my resume up to date is a chore. I hate dealing with word processing software.
+Versioning in most word processing software also sucks and diffing capabilities are limited.
 
 As a result I used to not keep my resume up to date and creating resumes adhoc whenever
 I needed one. 
@@ -38,3 +38,15 @@ Currently there is a workflow that builds the pdf on each commit. It needs to be
 resulting artifact on github pages.
 
 In the future a linter may be added if such a thing exists for LaTeX documents.
+
+## Acknowledgements
+
+
+This project uses the [Friggeri CV Template hosted at OverLeaf](https://www.overleaf.com/latex/templates/friggeri-cv-template/hmnchbfmjgqh) as base. I customized it somewhat heavily.
+
+Original by Adrien Friggeri (MIT license) with modifications by Alejandro Pérez Londoño (CC-BY)
+
+
+## License
+
+All the code here is released under the GPLv3, you can find a copy at [GNU's website](https://www.gnu.org/licenses/gpl-3.0.en.html) or in the LICENSE file.
