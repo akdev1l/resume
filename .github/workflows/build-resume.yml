@@ -25,6 +25,13 @@ jobs:
             texlive-lato \
             texlive-tex-gyre
           make
+      - name: push to output branch
+        run: |
+          git config --global user.name 'resume-builder'
+          git config --global user.email 'resume-builder@akdev.xyz'
+          git checkout output
+          git commit -am 'ci/cd: generated output pdf'
+          git push
       - uses: actions/upload-artifact@v2
         with:
           name: resume-latest.pdf
