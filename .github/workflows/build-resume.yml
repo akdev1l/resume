@@ -9,29 +9,34 @@ jobs:
     runs-on: ubuntu-latest
     container: fedora:latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: |
+      - name: install build dependencies
+        run: |
           dnf install -y \
             /usr/bin/xelatex \
-            texlive-parskip \
-            make \
             lilypond-texgyre-heros-fonts \
+            lato-fonts \
+            make \
+            git \
+            texlive-lato \
+            texlive-tex-gyre \
+            texlive-parskip \
             texlive-textpos \
             texlive-biblatex \
             texlive-progressbar \
-            texlive-firstaid \
-            lato-fonts \
-            texlive-lato \
-            texlive-tex-gyre
-          make
+            texlive-firstaid
+      - name: check out repository code
+        uses: actions/checkout@v2
+      - name: render resume
+        run: make
       - name: push to output branch
         run: |
+          pwd
+          ls *
           git config --global user.name 'resume-builder'
           git config --global user.email 'resume-builder@akdev.xyz'
-          git checkout output
-          git commit -am 'ci/cd: generated output pdf'
-          git push
+          git checkout -b output
+          git commit -m 'ci/cd: generated output pdf'  -- ./docs/main.pdf
+          git push -fu origin output
       - uses: actions/upload-artifact@v2
         with:
           name: resume-latest.pdf
