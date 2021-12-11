@@ -35,7 +35,8 @@ jobs:
           git config --global user.name 'resume-builder'
           git config --global user.email 'resume-builder@akdev.xyz'
           git checkout -b output
-          git commit -m 'ci/cd: generated output pdf'  -- ./docs/main.pdf
+          git add docs/main.pdf
+          git commit -m 'ci/cd: generated output pdf'
           git push -fu origin output
       - uses: actions/upload-artifact@v2
         with:
