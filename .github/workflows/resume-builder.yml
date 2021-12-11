@@ -15,7 +15,7 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: akdev1l/resume-builder
+          image: resume-builder
           tags: latest ${{ github.sha }}
           containerfiles: |
             ./Containerfile
@@ -25,4 +25,4 @@ jobs:
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
-          registry: ghcr.io/akdev1l
+          registry: ghcr.io
