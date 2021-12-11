@@ -5,6 +5,28 @@ on:
       - master
 
 jobs:
+  build-resume-builder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source
+        uses: actions/checkout@v2
+
+      - name: build resume-builder container
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: resume-builder
+          tags: latest ${{ github.sha }}
+          containerfiles: |
+            ./Containerfile
+
+      - name: push to container registry
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: ghcr.io
+
   build-resume:
     runs-on: ubuntu-latest
     container: fedora:latest
@@ -36,6 +58,7 @@ jobs:
           git config --global user.email 'resume-builder@akdev.xyz'
           git checkout -b output
           git add docs/main.pdf
+          git rm -rf .github/workflows
           git commit -m 'ci/cd: generated output pdf'
           git push -fu origin output
       - uses: actions/upload-artifact@v2
