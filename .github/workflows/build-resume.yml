@@ -57,7 +57,7 @@ jobs:
           git config --global user.name 'resume-builder'
           git config --global user.email 'resume-builder@akdev.xyz'
           git checkout -b output
-          git add docs/main.pdf
+          git add -f docs/main.pdf
           git rm -rf .github/workflows
           git commit -m 'ci/cd: generated output pdf'
           git push -fu origin output
