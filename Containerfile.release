@@ -1,0 +1,8 @@
+FROM fedora:35
+
+RUN echo 0
+COPY ./build/rpm/noarch/akdev-resume*.rpm /tmp
+
+RUN rm -rf ./build && dnf install -y /tmp/akdev-resume*.rpm
+
+ENTRYPOINT ["/usr/bin/akdev-resume", "server"]

@@ -11,18 +11,29 @@ clean:
 # Abstract Targets
 resume-launcher: $(BUILD_DIR)/akdev-resume
 resume-pdf: $(OUT_DIR)/main.pdf
+resume-web: $(OUT_DIR)/index.html
 install: install-resume install-bin install-doc
 rpm: $(BUILD_DIR)/rpm/noarch
 
-$(BUILD_DIR)/rpm/noarch: $(BUILD_DIR)
+# Build resume-web npm application
+$(OUT_DIR)/index.html: $(BUILD_DIR)/web
+	cp -rpv $(BUILD_DIR)/web/dist/* $(OUT_DIR)
+
+# Copy the source to the build directory - I don't want to have an in-tree build, thanks
+$(BUILD_DIR)/web: $(BUILD_DIR) web
+	cp -rpv web $(BUILD_DIR)
+	cd $(BUILD_DIR)/web && \
+	podman run --rm -it -v $(BUILD_DIR)/web:/workdir -w /workdir node:17 npm ci && \
+	podman run --rm -it -v $(BUILD_DIR)/web:/workdir -w /workdir node:17 npm run build
+
+# Build RPM - we call back to make here this is just for convenience
+$(BUILD_DIR)/rpm/noarch:
 	+rpkg local --spec rpm/akdev-resume.spec.rpkg --outdir ${BUILD_DIR}/rpm
 	
 $(BUILD_DIR):
-	install -d $(BUILD_DIR)
 	install -d $(BUILD_DIR)/rpm
 
 # Build PDF
-#
 $(OUT_DIR)/main.pdf: $(BUILD_DIR)/main.pdf
 	cp $(BUILD_DIR)/main.pdf $(OUT_DIR)/main.pdf
 
@@ -33,7 +44,6 @@ $(BUILD_DIR)/main.pdf: src/main.tex src/friggeri-cv.cls
 
 
 # Build wrapper launcher
-
 $(BUILD_DIR)/akdev-resume: src/bin/akdev-resume.sh
 	install -m=755 src/bin/akdev-resume.sh $(BUILD_DIR)/akdev-resume
 
