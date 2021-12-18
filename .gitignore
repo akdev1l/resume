@@ -3,3 +3,4 @@ docs/*.log
 docs/*.out
 docs/*.pdf
 *.sw[po]
+build

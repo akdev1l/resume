@@ -1,0 +1,33 @@
+%define debug_package %{nil}
+Name:       akdev-resume
+Version:    {{{ git_dir_version lead="1" }}}
+Release:    1%{?dist}
+Summary:    This is my resume.
+
+License:    GPLv3+
+URL:        https://resume.akdev.xyz
+VCS:        {{{ git_dir_vcs }}}
+
+Source: {{{ git_archive path="." }}}
+
+%description
+This is a test package.
+
+%prep
+{{{ git_dir_setup_macro path="." }}}
+
+%build
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+ls
+make install INSTALL_DIR=$RPM_BUILD_ROOT
+
+%files
+%{_datadir}/akdev
+%{_bindir}/akdev-resume
+%{_mandir}/man1/akdev-resume.gz
+
+%changelog
+{{{ git_dir_changelog }}}
