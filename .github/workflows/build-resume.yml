@@ -31,5 +31,24 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: resume-latest.pdf
+          name: akdev-resume
           path: ./docs/main.pdf
+
+  build-resume-rpm:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/akdev1l/resume-builder:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
+    steps:
+      - name: check out repository code
+        uses: actions/checkout@v2
+
+      - name: build rpm package
+        run: make rpm
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: akdev-resume-rpm
+          path: ./build/rpm/noarch

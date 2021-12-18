@@ -2,6 +2,7 @@
 Name:       akdev-resume
 Version:    {{{ git_dir_version lead="1" }}}
 Release:    1%{?dist}
+BuildArch:  noarch
 Summary:    This is my resume.
 
 License:    GPLv3+
