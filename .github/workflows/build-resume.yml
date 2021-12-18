@@ -37,31 +37,14 @@ jobs:
 
   build-resume:
     runs-on: ubuntu-latest
-    container: fedora:latest
+    container: ghcr.io/akdev1l:resume-builder:latest
     steps:
-      - name: install build dependencies
-        run: |
-          dnf install -y \
-            /usr/bin/xelatex \
-            lilypond-texgyre-heros-fonts \
-            lato-fonts \
-            make \
-            git \
-            texlive-lato \
-            texlive-tex-gyre \
-            texlive-parskip \
-            texlive-textpos \
-            texlive-biblatex \
-            texlive-progressbar \
-            texlive-firstaid
       - name: check out repository code
         uses: actions/checkout@v2
       - name: render resume
         run: make
       - name: push to output branch
         run: |
-          pwd
-          ls *
           git config --global user.name 'resume-builder'
           git config --global user.email 'resume-builder@akdev.xyz'
           git checkout -b output
