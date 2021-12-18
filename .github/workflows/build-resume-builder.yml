@@ -5,6 +5,7 @@ on:
       - master
     paths:
       - Containerfile
+      - rpm/akdev-resume.spec.rpkg
 
 jobs:
   build-resume-builder:

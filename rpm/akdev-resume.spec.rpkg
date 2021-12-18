@@ -2,14 +2,27 @@
 Name:       akdev-resume
 Version:    {{{ git_dir_version lead="1" }}}
 Release:    1%{?dist}
-BuildArch:  noarch
 Summary:    This is my resume.
-
 License:    GPLv3+
 URL:        https://resume.akdev.xyz
 VCS:        {{{ git_dir_vcs }}}
-
 Source: {{{ git_archive path="." }}}
+
+BuildArch:  noarch
+BuildRequires: /usr/bin/xelatex
+BuildRequires: texlive-parskip
+BuildRequires: lilypond-texgyre-heros-fonts
+BuildRequires: texlive-textpos
+BuildRequires: texlive-biblatex
+BuildRequires: texlive-progressbar
+BuildRequires: texlive-firstaid
+BuildRequires: lato-fonts
+BuildRequires: texlive-lato
+BuildRequires: texlive-tex-gyre
+BuildRequires: make
+BuildRequires: rpkg
+BuildRequires: python-setuptools
+BuildRequires: /usr/bin/rpmbuild
 
 %description
 This is a test package.

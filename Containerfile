@@ -1,17 +1,9 @@
 FROM fedora:35
 
-RUN dnf install -y \
-    /usr/bin/xelatex \
-    texlive-parskip \
-    lilypond-texgyre-heros-fonts \
-    texlive-textpos \
-    texlive-biblatex \
-    texlive-progressbar \
-    texlive-firstaid \
-    lato-fonts \
-    texlive-lato \
-    texlive-tex-gyre \
-    make \
-    rpkg \
-    python-setuptools \
-    /usr/bin/rpmbuild
+RUN dnf install -y 'dnf-command(builddep)' rpkg python-setuptools
+
+COPY . /tmp/workdir
+WORKDIR /tmp/workdir
+
+RUN rpkg spec --spec ./rpm -p > /tmp/out.spec && \
+    dnf builddep -y /tmp/out.spec && rm /tmp/out.spec
