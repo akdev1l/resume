@@ -9,6 +9,7 @@ VCS:        {{{ git_dir_vcs }}}
 Source: {{{ git_archive path="." }}}
 
 BuildArch:  noarch
+BuildRequires: nodejs
 BuildRequires: /usr/bin/xelatex
 BuildRequires: texlive-parskip
 BuildRequires: lilypond-texgyre-heros-fonts
