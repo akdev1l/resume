@@ -25,6 +25,7 @@ jobs:
         with:
           image: resume-builder
           tags: latest ${{ github.sha }}
+          oci: true
           containerfiles: |
             ./Containerfile
 
@@ -37,12 +38,18 @@ jobs:
 
   build-resume:
     runs-on: ubuntu-latest
-    container: ghcr.io/akdev1l:resume-builder:latest
+    container: 
+      image: ghcr.io/akdev1l/resume-builder:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
     steps:
       - name: check out repository code
         uses: actions/checkout@v2
+
       - name: render resume
         run: make
+
       - name: push to output branch
         run: |
           git config --global user.name 'resume-builder'
@@ -52,6 +59,7 @@ jobs:
           git rm -rf .github/workflows
           git commit -m 'ci/cd: generated output pdf'
           git push -fu origin output
+
       - uses: actions/upload-artifact@v2
         with:
           name: resume-latest.pdf
