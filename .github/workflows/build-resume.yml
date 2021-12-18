@@ -11,6 +11,14 @@ jobs:
       - name: checkout source
         uses: actions/checkout@v2
 
+      - name: login to container registry ghcr.io
+        id: login-registry
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          registry: ghcr.io/${{ github.repository_owner }}
+
       - name: build resume-builder container
         id: build-image
         uses: redhat-actions/buildah-build@v2
@@ -25,7 +33,7 @@ jobs:
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
-          registry: ghcr.io
+          registry: ghcr.io/${{ github.repository_owner }}
 
   build-resume:
     runs-on: ubuntu-latest
