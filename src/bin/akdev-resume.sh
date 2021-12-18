@@ -1,3 +1,3 @@
 #!/bin/bash
 
-xdg-open ${DESTDIR:-/}usr/share/akdev/resume.pdf
+echo xdg-open ${INSTALL_DIR}/usr/share/akdev/resume.pdf
