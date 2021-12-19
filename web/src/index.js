@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import * as appcss from './css/app.css';
 import { PdfViewer } from './akdev/pdfviewer';
 
-const pdfUrl = window.location.hash.slice(1) || "https://example.com";
+const pdfUrl = window.location.hash.slice(1) || "/main.pdf";
 
 console.log(`fetching pdf from ${pdfUrl}`);
 

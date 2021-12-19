@@ -45,13 +45,15 @@ class PdfContent extends React.Component {
             .then((page) => {
                 const viewport = page.getViewport({scale: 1.0});
 
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
+                canvas.width = viewport.width * window.devicePixelRatio;
+                canvas.height = viewport.height * window.devicePixelRatio;
 
-                page.render({
+                const renderTask = page.render({
                     canvasContext: ctx,
                     viewport
                 });
+
+                return renderTask.promise;
             })
             .catch((error) => console.log(error));
 
