@@ -1,20 +1,23 @@
 import React from 'react';
 
-import * as pdfjs from 'pdfjs-dist';
+import * as pdfjs from 'pdfjs-dist/webpack';
 
 import * as pdfviewercss from './css/pdfviewer.css';
 
 class PdfNavBar extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand navbar-light bg-light">
-                <div className="container-fluid">
+            <nav className="pdf-nav">
+                <div className="navbar-brand">
                     <a className="navbar-brand" href="#">pdfviewer.js</a>
-                    <div className="collapse navbar-collapse">
-                        <ul className="navbar-nav">
-                            <li><a className="nav-link active" aria-current="page" href="#">{this.props.pdfUrl}</a></li>
-                        </ul>
-                    </div>
+                </div>
+                <div className="navbar-gutter" />
+                <div className="navbar-menu">
+                    <ul className="navbar-nav">
+                        <li className="navbar-menu-item">
+                            <a aria-current="page" href="#">document: {this.props.pdfUrl}</a>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         )
@@ -24,7 +27,11 @@ class PdfNavBar extends React.Component {
 class PdfFooter extends React.Component {
     render() {
         return (
-            <span></span>
+            <div className="pdf-footer">
+                <p>
+                    built by akdev, Powered by pdf.js, see the <a href="#">source</a>
+                </p>
+            </div>
         )
     }
 };
@@ -43,10 +50,10 @@ class PdfContent extends React.Component {
         documentLoadTask.promise
             .then((doc) => doc.getPage(1))
             .then((page) => {
-                const viewport = page.getViewport({scale: 1.0});
+                const viewport = page.getViewport({scale: 1.7 * window.devicePixelRatio});
 
-                canvas.width = viewport.width * window.devicePixelRatio;
-                canvas.height = viewport.height * window.devicePixelRatio;
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
 
                 const renderTask = page.render({
                     canvasContext: ctx,
@@ -61,7 +68,9 @@ class PdfContent extends React.Component {
     }
     render() {
         return (
-            <canvas width="720" height="1280"ref={this.renderTarget} className="pdf-viewport" />
+            <div className="pdf-main">
+                <canvas ref={this.renderTarget} className="pdf-viewport" />
+            </div>
         )
     }
 };
@@ -69,16 +78,10 @@ class PdfContent extends React.Component {
 export class PdfViewer extends React.Component {
     render() {
         return (
-            <div className="pdf-root container-fluid">
-                <div className="row pdf-nav">
-                    <PdfNavBar pdfUrl={this.props.pdfUrl} />
-                </div>
-                <div className="row pdf-main">
-                    <PdfContent pdfUrl={this.props.pdfUrl} />
-                </div>
-                <div className="row pdf-footer">
-                    <PdfFooter />
-                </div>
+            <div className="pdf-root">
+                <PdfNavBar pdfUrl={this.props.pdfUrl} />
+                <PdfContent pdfUrl={this.props.pdfUrl} />
+                <PdfFooter />
             </div>
         )
     }
