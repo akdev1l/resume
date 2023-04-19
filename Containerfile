@@ -1,4 +1,4 @@
-FROM fedora:35
+FROM fedora:38
 
 RUN dnf install -y 'dnf-command(builddep)' rpkg python-setuptools
 

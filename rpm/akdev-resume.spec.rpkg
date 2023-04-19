@@ -12,7 +12,7 @@ BuildArch:  noarch
 BuildRequires: nodejs
 BuildRequires: /usr/bin/xelatex
 BuildRequires: texlive-parskip
-BuildRequires: lilypond-texgyre-heros-fonts
+BuildRequires: lilypond-fonts-common
 BuildRequires: texlive-textpos
 BuildRequires: texlive-biblatex
 BuildRequires: texlive-progressbar
