@@ -40,13 +40,27 @@ jobs:
         with:
           name: akdev-resume
           path: ./docs/main.pdf
-      - name: upload pdf to release
-        uses: softprops/action-gh-release@v1
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: "./docs/*.pdf"
-      - name: trigger CloudFlare build trigger
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: install github CLI
         run: |
-          curl -X POST ${{ secrets.CF_PAGES_BUILD_TRIGGER }}
-
-
-
+          sudo dnf install 'dnf-command(config-manager)' -y
+          sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+          sudo dnf install gh -y
+      - name: upload pdf to release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload \
+            ${{ needs.release-please.outputs.tag }} \
+            ./docs/main.pdf \
+            --repo ${{ github.repository_owner }}/${{ github.event.repository.name }} \
+            --clobber
