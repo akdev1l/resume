@@ -13,7 +13,7 @@ jobs:
       packages: write
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/akdev1l/resume-builder:latest
+      image: ghcr.io/akdev1l/resumes/resume-builder:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ github.token }}

@@ -24,7 +24,7 @@ jobs:
     needs: release-please
     if: needs.release-please.outputs.releases_created
     container: 
-      image: ghcr.io/akdev1l/resume-builder:latest
+      image: ghcr.io/akdev1l/resume/resume-builder:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ github.token }}
