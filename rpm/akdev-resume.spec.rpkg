@@ -24,6 +24,8 @@ BuildRequires: make
 BuildRequires: rpkg
 BuildRequires: python-setuptools
 BuildRequires: /usr/bin/rpmbuild
+BuildRequires: aspell-en
+BuildRequires: texlive-unicode-math
 
 %description
 This is a test package.

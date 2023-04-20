@@ -9,8 +9,8 @@
 \hypersetup{
     pdftitle={Edgard(Alex) Arvelaez - Resume},
     pdfauthor={Edgard(Alex) Arvelaez},
-    pdfsubject={Resume},
-    pdfkeywords={resume,office,communications,skill,edgard,arvelaez,devops},
+    pdfsubject={Edgard (Alex) Arvelaez - Resume},
+    pdfkeywords={resume,programming,java,c++,c,python,rust,alex,devops,sysadmin,developer,software,edgard,arvelaez,aws,lambda,linux,kernel,ublue,os},
     pdfborder=0 0 0,
     colorlinks=false,       % no lik border color
     allbordercolors=white    % white border color for all
@@ -38,14 +38,16 @@
   \section{Mail}
     \href{mailto:alex@akdev.xyz}{\textbf{alex@}akdev.xyz}
     ~
-  \section{Technical Skills}
+  \section{Programming Languages}
     \begin{tabular}{p{1.1cm} p{2.5cm}}
-      \progressbar[width=1.1cm,filledcolor=green]{1} & {Linux Admin} \\
-      \progressbar[width=1.1cm,filledcolor=green]{1} & {AWS} \\
-      \progressbar[width=1.1cm,filledcolor=green]{0.9} & {Ansible} \\
-      \progressbar[width=1.1cm,filledcolor=green]{0.85} & {Java} \\
+      \progressbar[width=1.1cm,filledcolor=green]{1.0} & {BASH} \\
+      \progressbar[width=1.1cm,filledcolor=green]{1.0} & {C} \\
+      \progressbar[width=1.1cm,filledcolor=green]{1.0} & {C++} \\
+      \progressbar[width=1.1cm,filledcolor=green]{0.9} & {TypeScript} \\
+      \progressbar[width=1.1cm,filledcolor=green]{0.9} & {JavaScript} \\
+      \progressbar[width=1.1cm,filledcolor=green]{0.9} & {Java} \\
       \progressbar[width=1.1cm,filledcolor=green]{0.85} & {Python} \\
-      \progressbar[width=1.1cm,filledcolor=green]{0.8} & {Documentation} \\
+      \progressbar[width=1.1cm,filledcolor=green]{0.8} & {Rust} \\
     \end{tabular}
     ~
   \section{Personal Skills}
@@ -56,32 +58,51 @@
     \end{tabular}
     ~
   \section{Projects}
-    \bullet\hspace{0.2cm}Personal Intranet
-    \bullet\hspace{0.2cm}\href{https://github.com/dokutan/mouse_m908/pull/12}{mouse\_m908}
-    \bullet\hspace{0.2cm}\href{https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/679}{nmcli ovs integration}
-    \bullet\hspace{0.2cm}\href{https://bugs.almalinux.org/view.php?id=151}{AlmaLinux Ticket Triaging}
+    \item[\rightarrow]\href{https://github.com/akdev1l/ostree-images}{OSTree Images}
+    \item[\rightarrow]\href{https://github.com/ublue-os/isogenerator}{UBlue isogenerator}
+    \item[\rightarrow]\href{https://github.com/akdev1l/container-images}{Container Images}
     ~
   \section{Technologies}
-    \bullet\hspace{0.2cm}AWS CDK
-    \bullet\hspace{0.2cm}CloudFormation
-    \bullet\hspace{0.2cm}Jenkins
-    \bullet\hspace{0.2cm}Ansible
-    \bullet\hspace{0.2cm}libvirt/qemu/kvm
-    \bullet\hspace{0.2cm}Linux
+    \item[\rightarrow]{AWS CDK}
+    \item[\rightarrow]{CloudFormation}
+    \item[\rightarrow]{Docker/Podman}
+    \item[\rightarrow]{Ansible}
+    \item[\rightarrow]{libvirt/qemu/kvm}
+    \item[\rightarrow]{Linux}
     ~
 \end{aside}
 
 \section{Experience}
 \begin{entrylist}
   \entry
-    {June 2020 - Present}
-    {DevOps Engineer}
+    {April 2023 - Present}
+    {System Development Engineer - L5}
+    {Amazon}
+    {\begin{itemize}
+        \item Coach Junior engineers and help onboard new team members.
+        \item Create tasks and architectural designs while leading Junior engineers on implementation.
+        \item Take the lead on technical decisions across the team's projects due to experience and highly technical background.
+        \item Code review and deliver feedback effectively to increase team productivity.
+        \item Implement technically involved parts of ongoing projects (authentication, database access, performance-related functionality).
+    \end{itemize}}
+  \entry
+    {January 2023 - April 2023}
+    {DevOps Engineer - L5}
+    {Amazon}
+    {\begin{itemize}
+        \item Created Web-based tool for recovery during emergencies. It automated a clunky and error-prone manual process which resulted in savings of ~1500 engineer hours per year. (AWS API Gateway, AWS Lambda, DynamoDB, SQS)
+        \item Designed the architecture of the back-end application on AWS Lambda to lower ongoing maintenance costs. (Java, Dagger, AWS Lambda, Smithy)
+        \item Designed and implemented the front-end website using React, Redux and TypeScript following best practices to achieve optimal performance and responsiveness in mobile and under poor connectivity. (TypeScript, React, Redux, API Gateway, AWS Lambda)
+        \item Designed data processing platform to analyze and detect stuck shipments within the Amazon Fulfillment Network. Expected to save over 4000 hours of engineer time per year. (AWS Glue, Athena, ECS)
+    \end{itemize}}
+  \entry
+    {June 2020 - December 2022}
+    {DevOps Engineer - L4}
     {Amazon}
     {\begin{itemize}
         \item Support multiple teams on high severity and low severity incidents, decreasing resolution time.
         \item Developed a pipeline scanning tool to analyze full CD/CI best practices on over 1,000 pipelines.
-        \item Adjusted alarms to minimize false alerts to avoid alarm fatigue and decrease manual effort in ticket triaging.
-        \item Migrated an internal website from AL1 (based on RHEL5) to AL2 by updating the build system, updating all dependencies and fixing broken functionality.
+        \item Supported the use of the pipeline scanning tool leading the improvement of the FullCD posture of 30 pipelines.
         \item Improved an internal tool for automatic dashboard generation taking previously defined alert thresholds into account.
     \end{itemize}}
   \entry
@@ -90,11 +111,8 @@
     {Fundserv}
     {\begin{itemize}
         \item Implemented a fully-automated pipeline to provision VMs on VMware ESXi\\using Jenkins and Ansible.
-        \item Developed automated build, package and deployment procedure which was implemented across multiple applications with a centralized CI infrastructure.
-        \item Created standardized systemd services for easy startup and shutdown of\\applications.
         \item Developed customized ansible inventory plugin to get inventory information via the vSphere Automation SDK.
         \item Developed a three-tiered Angular/Springboot Java application for accounting.
-        \item Developed and maintained an internal monitoring website for the Systems\\Operations team.
         \item Developed a new service management facility built on ksh88.
     \end{itemize}}
 \end{entrylist}
