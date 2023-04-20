@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/akdev1l/resume/compare/v1.0.4...v1.0.5) (2023-04-20)
+
+
+### Bug Fixes
+
+* use new namespaced builder ([eea44ec](https://github.com/akdev1l/resume/commit/eea44ec462dca61dc0cbec4453e2585f0d80f054))
+
 ## [1.0.4](https://github.com/akdev1l/resume/compare/v1.0.3...v1.0.4) (2023-04-20)
 
 
