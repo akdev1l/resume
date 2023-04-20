@@ -28,6 +28,9 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ github.token }}
+    permissions:
+      contents: write
+      packages: write
     steps:
       - name: check out repository code
         uses: actions/checkout@v2
