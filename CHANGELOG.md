@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/akdev1l/resume/compare/v1.0.0...v1.0.1) (2023-04-20)
+
+
+### Bug Fixes
+
+* add correct permissions ([d27e928](https://github.com/akdev1l/resume/commit/d27e928ee30b49ba6ed225f02ed275d8bbe0fe74))
+
 ## 1.0.0 (2023-04-20)
 
 
