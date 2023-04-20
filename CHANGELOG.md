@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/akdev1l/resume/compare/v1.0.3...v1.0.4) (2023-04-20)
+
+
+### Bug Fixes
+
+* add github cli to resume builder ([35d243b](https://github.com/akdev1l/resume/commit/35d243bf503537bc13a086f2448ba736f3dd0baa))
+
 ## [1.0.3](https://github.com/akdev1l/resume/compare/v1.0.2...v1.0.3) (2023-04-20)
 
 
