@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/akdev1l/resume/compare/v1.0.1...v1.0.2) (2023-04-20)
+
+
+### Bug Fixes
+
+* use gh cli to upload to release ([e94a306](https://github.com/akdev1l/resume/commit/e94a3067e4774e050c7b87c22f1d1ed2371e26e7))
+
 ## [1.0.1](https://github.com/akdev1l/resume/compare/v1.0.0...v1.0.1) (2023-04-20)
 
 
