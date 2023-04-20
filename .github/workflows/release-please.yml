@@ -18,3 +18,33 @@ jobs:
         with:
           release-type: node
           package-name: release-please-action
+
+  trigger-cf-build:
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: needs.release-please.outputs.releases_created
+    container: 
+      image: ghcr.io/akdev1l/resume-builder:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
+    steps:
+      - name: check out repository code
+        uses: actions/checkout@v2
+      - name: render resume
+        run: make
+      - uses: actions/upload-artifact@v2
+        with:
+          name: akdev-resume
+          path: ./docs/main.pdf
+      - name: upload pdf to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: 
+            - "./docs/*.pdf"
+      - name: trigger CloudFlare build trigger
+        run: |
+          curl -X POST ${{ secrets.CF_PAGES_BUILD_TRIGGER }}
+
+
+
