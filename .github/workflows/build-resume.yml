@@ -8,6 +8,9 @@ on:
 
 jobs:
   build-resume:
+    permissions:
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
     container: 
       image: ghcr.io/akdev1l/resume-builder:latest
@@ -37,6 +40,9 @@ jobs:
           path: ./docs/main.pdf
 
   build-resume-rpm:
+    permissions:
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/akdev1l/resume-builder:latest

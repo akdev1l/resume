@@ -9,6 +9,9 @@ on:
 
 jobs:
   build-resume-builder:
+    permissions:
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
     steps:
       - name: checkout source

@@ -8,6 +8,9 @@ on:
 
 jobs:
   builr-resume-web:
+    permissions:
+      contents: write
+      packages: write
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/akdev1l/resume-builder:latest
