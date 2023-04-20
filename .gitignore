@@ -1,4 +1,3 @@
-docs/
 *.sw[po]
 build
 web/node_modules
