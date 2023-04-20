@@ -40,8 +40,7 @@ jobs:
       - name: upload pdf to release
         uses: softprops/action-gh-release@v1
         with:
-          files: 
-            - "./docs/*.pdf"
+          files: "./docs/*.pdf"
       - name: trigger CloudFlare build trigger
         run: |
           curl -X POST ${{ secrets.CF_PAGES_BUILD_TRIGGER }}
