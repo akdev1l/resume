@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/akdev1l/resume/compare/v1.0.2...v1.0.3) (2023-04-20)
+
+
+### Bug Fixes
+
+* don't create extra release ([f6b68d7](https://github.com/akdev1l/resume/commit/f6b68d7129ad42327ea938daa2f651f50355d2a3))
+
 ## [1.0.2](https://github.com/akdev1l/resume/compare/v1.0.1...v1.0.2) (2023-04-20)
 
 
