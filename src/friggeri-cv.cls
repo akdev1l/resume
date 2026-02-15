@@ -188,9 +188,19 @@
 \setlength{\TPVertModule}{1cm}
 \newenvironment{aside}{%
   \let\oldsection\section
+  \let\oldsubsection\subsection
+
   \renewcommand{\section}[1]{
-    \par\vspace{\baselineskip}{\Large\headingfont\color{pblue} ##1}
+    \hspace{0.5cm}
+    {\par\vspace{\baselineskip}{\Large\headingfont\color{pblue} ##1}}%
   }
+
+  \renewcommand{\subsection}[1]{
+    \par\vspace{\baselineskip}%
+    \hspace{0.2cm}
+    {\small\textbf{\color{darkgray}\rightarrow\hspace{0.05cm}##1}}%
+  }
+
   \begin{textblock}{3.5}(1.0, 0.55)
   \begin{flushleft}
   \obeycr
@@ -199,6 +209,7 @@
   \end{flushleft}
   \end{textblock}
   \let\section\oldsection
+  \let\subsection\oldsubsection
 }
 
 %%%%%%%%%%%%%%%%
