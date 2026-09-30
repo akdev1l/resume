@@ -8,15 +8,23 @@
 % remove link decorations: https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks
 \hypersetup{
     pdftitle={Alex Díaz (akdev/akdev1l) - Resume},
-    pdfauthor={akdev}
-    pdfsubject={Alex Díaz - Resume}
-    pdfkeywords={resume,programming,java,c++,c,python,rust,alex,devops,sysadmin,developer,software,edgard,arvelaez,aws,lambda,linux,kernel,ai,llm,this,guy,is,a,complete,ai,god,openai,appleai,microsoftai,bedrock}
+    pdfauthor={akdev},
+    pdfsubject={Alex Díaz - Resume},
+    pdfkeywords={resume,software engineer,systems development engineer,java,c++,c,python,typescript,rust,aws,lambda,bedrock,devops,linux,ai,llm},
     pdfborder=0 0 0,
     colorlinks=false,       % no lik border color
     allbordercolors=white    % white border color for all
 }
 \RequirePackage{xcolor}
 \definecolor{pblue}{HTML}{0395DE}
+
+% \entry variant without the description line
+\newcommand{\shortentry}[3]{%
+  \item[#1]
+    {\addfontfeature{Color=pblue}|} {\boldfont{#2}}%
+    \hfill%
+    {\textit{\addfontfeature{Color=pblue}#3}}\vspace{\parsep}%
+  }
 
 \begin{document}
 \header{Alex}{ Díaz}
@@ -31,7 +39,7 @@
 \begin{aside}
   \section{Location}
     Toronto, ON, Canada
-  \section{Github}
+  \section{GitHub}
     \href{https://github.com/akdev1l}{https://github.com/akdev1l}
   \section{Mail}
     \href{mailto:alex@akdev.xyz}{\textbf{alex@}akdev.xyz}
@@ -41,11 +49,14 @@
     \item[\rightarrow] C
     \item[\rightarrow] C++
     \item[\rightarrow] Python
-    \item[\rightarrow] Typescript
-  \section{Projects}
-    \item[\rightarrow]Proactive Shipment Detection System: Mitigated issues with customer shipments, preventing potential disruptions before impacting customers.
-    \item[\rightarrow]Inventory Adjustment System: Automated large-scale inventory adjustments, improving accuracy and efficiency in responding to safety-critical events.
-    \item[\rightarrow]Runtime Instrumentation for Java Applications: Enhanced infrastructure visibility, enabling better decision-making during critical region migrations.
+    \item[\rightarrow] TypeScript
+    \item[\rightarrow] Rust
+  \section{Human Languages}
+    \item[\rightarrow]Spanish (Native)
+    \item[\rightarrow]English (Fluent, C2)
+  \section{Open Source Contributions}
+    \item[\rightarrow]\href{https://github.com/neovim/neovim/pull/34728}{neovim}: Added static build support, closing an 8-year-old feature request.
+    \item[\rightarrow]\href{https://github.com/ublue-os/main}{Universal Blue}: Prototyped NVIDIA drivers packaged as an OSTree OCI image.
 \end{aside}
 
 
@@ -57,42 +68,42 @@
     {Sr. Systems Development Engineer - L6}
     {Amazon}
     {\begin{itemize}
-        \item Developed and owns a proactive shipment issue detection system, unblocking \~10M shipments/week and saving \~\$100M annually
-        \item Spearheading critical migration efforts to meet the expected deadlines and avoiding costly delays due to infrastructure costs.
-        \item Owns and maintains warehouse-facing tools processing thousands of requests from Amazon Warehouses globally.
-        \item Provides high severity support for critical services, documenting and preparing communications to senior leadership.
-        \item Performs technical deep dives to root cause and reproduce complex production issues.
-        \item Finds new opportunities to deploy AI solutions to increase developer productivity.
+        \item Built and own a proactive shipment issue detection system, unblocking $\sim$10M shipments/week and saving $\sim$\$100M annually.
+        \item Led and mentored 6 engineers to bootstrap $\sim$20 critical Amazon Fulfillment Network services in a new region, meeting deadlines and unblocking its launch; authored service-agnostic runbooks so the team needed minimal support from owning teams.
+        \item Own an emergency recovery platform that automates key steps of warehouse recovery after large-scale events (fire, flood, etc.), saving $\sim$8 weeks of labour per incident across 6+ incidents/year.
+        \item Provide high severity support for critical services, documenting and preparing communications to senior leadership.
+        \item Partnered with a Principal Engineer to reproduce the failure behind a prolonged, multi-million-dollar Sev1 outage, enabling its diagnosis and a permanent fix by the owning team with no recurrence since.
+        \item Building an AI-driven test automation platform that uses coverage metrics and API models to generate tests, targeting a 20\% increase in test coverage across the organization.
     \end{itemize}}
   \entry
     {April 2023 - November 2023}
     {Systems Development Engineer - L5}
     {Amazon}
     {\begin{itemize}
-        \item Designed and built a safe inventory deletion system for emergencies in Amazon Warehouses saving \~4000 hours of labour every year summing up to \$5M/yr.
+        \item Designed and built a safe inventory deletion system for emergencies in Amazon Warehouses saving $\sim$4000 hours of labour every year summing up to \$5M/yr.
         \item Led architecture design and execution, mentoring junior engineers through implementation and delivery of a platform processing 5k requests/week.
         \item Took the lead on technical decisions across the team's projects due to experience and highly technical background.
-        \item Participated in code review process and deliver feedback effectively to increase team productivity.
-        \item Implement technically involved parts of ongoing projects (authentication, database access, performance-related functionality).
+        \item Participated in the code review process, delivering feedback effectively to increase team productivity.
+        \item Implemented technically involved parts of ongoing projects (authentication, database access, performance-related functionality).
     \end{itemize}}
   \entry
     {January 2023 - April 2023}
     {DevOps Engineer - L5}
     {Amazon}
     {\begin{itemize}
-        \item Created Web-based tool for recovery during emergencies. It automated a clunky and error-prone manual process which resulted in savings of ~1500 engineer hours per year. (AWS API Gateway, AWS Lambda, DynamoDB, SQS)
-        \item Designed the architecture of the back-end application on AWS Lambda to lower ongoing maintenance costs. (Java, Dagger, AWS Lambda, Smithy)
+        \item Created Web-based tool for recovery during emergencies. It automated a clunky and error-prone manual process which resulted in savings of $\sim$1500 engineer hours per year. (AWS API Gateway, AWS Lambda, DynamoDB, SQS)
+        \item Architected the back-end application on AWS Lambda to lower ongoing maintenance costs. (Java, Dagger, AWS Lambda, Smithy)
         \item Designed and implemented the front-end website using React, Redux and TypeScript following best practices to achieve optimal performance and responsiveness in mobile and under poor connectivity. (TypeScript, React, Redux, API Gateway, AWS Lambda)
-        \item Designed data processing platform to analyze and detect stuck shipments within the Amazon Fulfillment Network. Expected to save over 4000 hours of engineer time per year. (AWS Glue, Athena, ECS)
+        \item Designed data processing platform to analyze and detect stuck shipments within the Amazon Fulfillment Network. (AWS Glue, Athena, ECS)
     \end{itemize}}
   \entry
     {June 2020 - December 2022}
     {DevOps Engineer - L4}
     {Amazon}
     {\begin{itemize}
-        \item Support multiple teams on high severity and low severity incidents, decreasing resolution time.
-        \item Developed a pipeline scanning tool to analyze full CD/CI best practices on over 1,000 pipelines.
-        \item Supported the use of the pipeline scanning tool leading the improvement of the FullCD posture of 30 pipelines.
+        \item Supported multiple teams on high severity and low severity incidents, decreasing resolution time.
+        \item Developed a pipeline scanning tool to analyze Full CD best practices on over 1,000 pipelines.
+        \item Supported the use of the pipeline scanning tool leading the improvement of the Full CD posture of 30 pipelines.
         \item Improved an internal tool for automatic dashboard generation to show configured alert thresholds.
     \end{itemize}}
   \entry
@@ -101,8 +112,8 @@
     {Fundserv}
     {\begin{itemize}
         \item Implemented a fully-automated pipeline to provision VMs on VMware ESXi\\using Jenkins and Ansible.
-        \item Developed customized ansible inventory plugin to get inventory information via the vSphere Automation SDK.
-        \item Developed a three-tiered Angular/Springboot Java application for accounting.
+        \item Developed customized Ansible inventory plugin to get inventory information via the vSphere Automation SDK.
+        \item Developed a three-tiered Angular/Spring Boot Java application for accounting.
         \item Developed a new service management facility built on ksh88.
     \end{itemize}}
 \end{entrylist}
@@ -111,53 +122,64 @@
 \begin{aside}
   \section{Location}
     Toronto, ON, Canada
-  \section{Github}
+  \section{GitHub}
     \href{https://github.com/akdev1l}{https://github.com/akdev1l}
   \section{Mail}
     \href{mailto:alex@akdev.xyz}{\textbf{alex@}akdev.xyz}
   ~
-  \section{Human Languages}
-    \item[\rightarrow]Spanish (Native)
-    \item[\rightarrow]English (Fluent, C2)
-  \section{Open Source Contributions}
-    \item[\rightarrow]\href{https://github.com/neovim/neovim/issues/6575}{neovim}: Enabled building of statically linked binaries.
-    \item[\rightarrow]\href{https://github.com/ublue-os/main}{Universal Blue}: Developed proof of concept containerizing the nvidia drivers into an OSTree-compatible OCI image.
   \section{Cloud Services}
     \item AWS CDK
     \item CloudFormation
+    \item AWS Lambda
+    \item API Gateway
+    \item DynamoDB
+    \item SQS
     \item Elastic Container Service
+    \item AWS Glue \& Athena
   \section{AI/LLM}
-    \item AWS Bedrock
+    \item Amazon Bedrock
     \item AWS Strands
     \item MCP SDK
     \item Amazon Q CLI
   \section{Frameworks}
     \item Spring
-    \item React
+    \item React \& Redux
+    \item Dagger
+    \item Smithy
     ~
 \end{aside}
 
 \section{Education}
 \begin{entrylist}
-  \entry
+  \shortentry
     {2021}
     {AWS Cloud Practitioner}
     {Amazon Web Services}
-    {Obtained the Cloud Practitioner certification as an opening in the AWS Skill Tree.}
-  \entry
+  \shortentry
     {2019}
     {Red Hat Certified Systems Administrator}
     {Red Hat}
-    {Obtained the RHCSA certification after attending Red Hat training sessions.}
-  \entry
+  \shortentry
     {2019}
     {Red Hat Certified Ansible Specialist}
     {Red Hat}
-    {Self-taught Ansible and was able to obtain the specialist-level certification on it.}
-  \entry
+  \shortentry
     {2018}
     {Computer Programming Diploma}
     {Seneca College}
-    {Strong focus on hands-on experience with industry standard technologies.}
+\end{entrylist}
+
+\section{Personal Projects}
+\begin{entrylist}
+  \entry
+    {2026}
+    {\href{https://fedora.help}{fedora.help}}
+    {Python, MkDocs}
+    {Unofficial guide to the software Fedora cannot ship: multimedia codecs, NVIDIA drivers and third-party repositories.}
+  \entry
+    {2023}
+    {\href{https://github.com/akdev1l/rtbox}{rtbox}}
+    {Rust}
+    {Early-stage toolbx-compatible container runtime distributed as a single static binary.}
 \end{entrylist}
 \end{document}
