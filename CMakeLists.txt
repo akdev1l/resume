@@ -36,20 +36,37 @@ set(stage_docs_deps "")
 #
 if(RESUME_BUILD_PDF)
     find_program(XELATEX_EXECUTABLE xelatex REQUIRED)
+    find_program(NODE_EXECUTABLE node REQUIRED)
+
+    # The resume content lives in resume.json; main.tex only lays it out and
+    # \input's the macros generated here.
+    add_custom_command(
+        OUTPUT "${PROJECT_BINARY_DIR}/resume-data.tex"
+        COMMAND "${NODE_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/util/gen-tex.mjs"
+                "${PROJECT_SOURCE_DIR}/src/resume.json"
+                "${PROJECT_BINARY_DIR}/resume-data.tex"
+        DEPENDS "${PROJECT_SOURCE_DIR}/src/resume.json"
+                "${PROJECT_SOURCE_DIR}/util/gen-tex.mjs"
+        COMMENT "Generating resume-data.tex from resume.json"
+        VERBATIM)
 
     # xelatex is run twice: the first pass writes the aux files the
     # progressbar/textpos macros need, the second one produces the pdf.
+    # TEXINPUTS lets main.tex find the generated file; the trailing path
+    # separator keeps the default search path.
+    set(xelatex_env "${CMAKE_COMMAND}" -E env "TEXINPUTS=${PROJECT_BINARY_DIR}:")
     add_custom_command(
         OUTPUT "${PROJECT_BINARY_DIR}/main.pdf"
-        COMMAND "${XELATEX_EXECUTABLE}"
+        COMMAND ${xelatex_env} "${XELATEX_EXECUTABLE}"
                 -halt-on-error -interaction=nonstopmode
                 "--output-directory=${PROJECT_BINARY_DIR}" -no-pdf main.tex
-        COMMAND "${XELATEX_EXECUTABLE}"
+        COMMAND ${xelatex_env} "${XELATEX_EXECUTABLE}"
                 -halt-on-error -interaction=nonstopmode
                 "--output-directory=${PROJECT_BINARY_DIR}" main.tex
         WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/src"
         DEPENDS "${PROJECT_SOURCE_DIR}/src/main.tex"
                 "${PROJECT_SOURCE_DIR}/src/friggeri-cv.cls"
+                "${PROJECT_BINARY_DIR}/resume-data.tex"
         COMMENT "Rendering main.pdf with xelatex"
         VERBATIM)
 
@@ -127,10 +144,16 @@ if(RESUME_BUILD_WEB)
         set(node_pm "${RESUME_NODE_PACKAGE_MANAGER}")
     endif()
 
-    find_program(NODE_PM_EXECUTABLE "${node_pm}" REQUIRED)
+    # One cache entry per package manager: a single shared one would keep
+    # pointing at npm after the project switched to pnpm.
+    string(TOUPPER "${node_pm}" node_pm_upper)
+    find_program(${node_pm_upper}_EXECUTABLE "${node_pm}" REQUIRED)
+    set(node_pm_executable "${${node_pm_upper}_EXECUTABLE}")
 
     if(node_pm STREQUAL "pnpm")
-        set(node_install_args install --frozen-lockfile)
+        # replace a node_modules another package manager left behind instead
+        # of asking, which fails without a terminal
+        set(node_install_args install --frozen-lockfile --config.confirmModulesPurge=false)
     else()
         set(node_install_args ci)
     endif()
@@ -167,14 +190,21 @@ if(RESUME_BUILD_WEB)
     # created by one of the COMMANDs below.
     file(MAKE_DIRECTORY "${WEB_BUILD_DIR}")
 
+    # The previous copy goes first, so files deleted from web/ (an old
+    # lockfile, a renamed source) don't linger in the build.
+    set(web_previous_copy "${WEB_BUILD_DIR}/dist" "${WEB_BUILD_DIR}/src" "${WEB_BUILD_DIR}/public")
+    foreach(entry IN LISTS web_copy_candidates)
+        list(APPEND web_previous_copy "${WEB_BUILD_DIR}/${entry}")
+    endforeach()
+
     add_custom_command(
         OUTPUT "${WEB_BUILD_DIR}/dist/index.html"
-        COMMAND "${CMAKE_COMMAND}" -E rm -rf "${WEB_BUILD_DIR}/dist"
+        COMMAND "${CMAKE_COMMAND}" -E rm -rf ${web_previous_copy}
         COMMAND "${CMAKE_COMMAND}" -E copy_directory
                 "${WEB_SOURCE_DIR}/src" "${WEB_BUILD_DIR}/src"
         ${web_copy_commands}
-        COMMAND "${NODE_PM_EXECUTABLE}" ${node_install_args}
-        COMMAND "${NODE_PM_EXECUTABLE}" run build
+        COMMAND "${node_pm_executable}" ${node_install_args}
+        COMMAND "${node_pm_executable}" run build
         WORKING_DIRECTORY "${WEB_BUILD_DIR}"
         DEPENDS ${web_copy_depends} ${web_src_files}
         COMMENT "Building web/ with ${node_pm}"
@@ -191,10 +221,13 @@ if(RESUME_STAGE_DOCS)
     set(stage_docs_commands
         COMMAND "${CMAKE_COMMAND}" -E make_directory "${RESUME_DOCS_DIR}")
 
+    # the site fetches /resume.json at runtime, so it ships next to the bundle
     if(RESUME_BUILD_WEB)
         list(APPEND stage_docs_commands
             COMMAND "${CMAKE_COMMAND}" -E copy_directory
-                    "${WEB_BUILD_DIR}/dist" "${RESUME_DOCS_DIR}")
+                    "${WEB_BUILD_DIR}/dist" "${RESUME_DOCS_DIR}"
+            COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+                    "${PROJECT_SOURCE_DIR}/src/resume.json" "${RESUME_DOCS_DIR}/resume.json")
     endif()
     if(RESUME_BUILD_PDF)
         list(APPEND stage_docs_commands

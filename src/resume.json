@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "title": "Alex Díaz - Resume",
+    "author": "Alex Díaz",
+    "subject": "Alex Díaz - Resume",
+    "keywords": [
+      "resume",
+      "alex diaz",
+      "toronto",
+      "software engineer",
+      "senior software engineer",
+      "systems development engineer",
+      "backend engineer",
+      "cloud engineer",
+      "devops",
+      "java",
+      "c++",
+      "c",
+      "python",
+      "typescript",
+      "rust",
+      "aws",
+      "lambda",
+      "api gateway",
+      "dynamodb",
+      "sqs",
+      "ecs",
+      "docker",
+      "kubernetes",
+      "terraform",
+      "ansible",
+      "linux",
+      "rhcsa",
+      "qt",
+      "boost",
+      "abseil",
+      "sfml",
+      "imgui",
+      "react",
+      "game development",
+      "incident response",
+      "ai",
+      "llm"
+    ]
+  },
+  "name": {
+    "first": "Alex",
+    "last": "Díaz"
+  },
+  "headline": "",
+  "avatar": "/avatar.webp",
+  "about": [
+    "I'm an open source enthusiast and a veteran Linux user who loves experimenting with immutable and atomic operating systems. I have experience building distributed systems, web services and event-driven systems, along with a deep understanding of system internals.",
+    "My passion for technology drives me to keep learning and improving, as you can see on my GitHub."
+  ],
+  "contact": {
+    "location": {
+      "text": "Toronto, ON, Canada",
+      "url": "https://www.google.com/maps/place/Toronto,+ON,+Canada"
+    },
+    "github": {
+      "text": "github.com/akdev1l",
+      "url": "https://github.com/akdev1l"
+    },
+    "email": "hire@alexdiaz.fyi",
+    "phone": {
+      "text": "+1 (617) 468 2058",
+      "number": "+16174682058"
+    }
+  },
+  "programmingLanguages": [
+    { "name": "Java", "url": "https://dev.java" },
+    { "name": "C", "url": "https://www.open-std.org/jtc1/sc22/wg14/" },
+    { "name": "C++", "url": "https://isocpp.org" },
+    { "name": "Python", "url": "https://www.python.org" },
+    { "name": "TypeScript", "url": "https://www.typescriptlang.org" },
+    { "name": "Rust", "url": "https://www.rust-lang.org" }
+  ],
+  "humanLanguages": [
+    { "name": "Spanish", "level": "Native", "flag": "es" },
+    { "name": "English", "level": "Fluent, C2", "flag": "gb" }
+  ],
+  "openSource": [
+    {
+      "name": "neovim",
+      "url": "https://github.com/neovim/neovim/pull/34728",
+      "description": "Added static build support, closing an 8-year-old feature request."
+    },
+    {
+      "name": "Universal Blue",
+      "url": "https://github.com/ublue-os/main",
+      "description": "Prototyped NVIDIA drivers packaged as an OSTree OCI image."
+    }
+  ],
+  "tech": [
+    { "name": "AWS", "url": "https://aws.amazon.com" },
+    { "name": "Docker", "url": "https://www.docker.com" },
+    { "name": "Kubernetes", "url": "https://kubernetes.io" },
+    { "name": "Terraform", "url": "https://developer.hashicorp.com/terraform" }
+  ],
+  "frameworks": [
+    { "name": "Qt", "url": "https://www.qt.io" },
+    { "name": "Boost", "url": "https://www.boost.org" },
+    { "name": "Abseil", "url": "https://abseil.io" },
+    { "name": "SFML", "url": "https://www.sfml-dev.org" },
+    { "name": "Dear ImGui", "url": "https://github.com/ocornut/imgui" }
+  ],
+  "stats": [
+    { "label": "Backend", "value": 0.9 },
+    { "label": "Frontend", "value": 0.6 },
+    { "label": "Games", "value": 0.3 },
+    { "label": "Systems", "value": 0.9 },
+    { "label": "AI", "value": 0.9 }
+  ],
+  "experience": [
+    {
+      "dates": "December 2023 - Present",
+      "title": "Sr. Systems Development Engineer",
+      "org": { "name": "Amazon", "url": "https://www.amazon.com" },
+      "highlights": [
+        "Grew the stuck-shipment platform I designed in 2023 into a proactive shipment issue detection system I still own, integrated with two partner teams for two critical workflows, unblocking ~10M shipments/week and saving ~$100M annually.",
+        "Led and mentored 6 engineers to bootstrap ~20 critical Amazon Fulfillment Network services in a new region, meeting deadlines and unblocking its launch; authored service-agnostic runbooks so the team needed minimal support from owning teams.",
+        "Grew the emergency recovery tool I created in 2023 from a single use case into the worldwide standard recovery platform for all Amazon warehouses, automating key steps of warehouse recovery after large-scale events (fire, flood, etc.) and saving ~8 weeks of labour per incident across 6+ incidents/year.",
+        "Provide high severity support for critical services, documenting and preparing communications to senior leadership.",
+        "Partnered with a Principal Engineer to reproduce the failure behind a prolonged, multi-million-dollar Sev1 outage, enabling its diagnosis and a permanent fix by the owning team with no recurrence since.",
+        "Building an AI-driven test automation platform that uses coverage metrics and API models to generate tests, targeting a 20% increase in test coverage across the organization."
+      ]
+    },
+    {
+      "dates": "April 2023 - November 2023",
+      "title": "Systems Development Engineer",
+      "org": { "name": "Amazon", "url": "https://www.amazon.com" },
+      "highlights": [
+        "Designed and built a safe inventory deletion system for emergencies in Amazon Warehouses saving ~4000 hours of labour every year summing up to $5M/yr.",
+        "Led architecture design and execution, mentoring junior engineers through implementation and delivery of a platform processing 5k requests/week.",
+        "Implemented technically involved parts of ongoing projects (authentication, database access, performance-related functionality)."
+      ]
+    },
+    {
+      "dates": "June 2020 - April 2023",
+      "title": "DevOps Engineer",
+      "org": { "name": "Amazon", "url": "https://www.amazon.com" },
+      "highlights": [
+        "Created the first version of a web-based emergency recovery tool. It automated a clunky and error-prone manual process which resulted in savings of ~1500 engineer hours per year. (AWS API Gateway, AWS Lambda, DynamoDB, SQS)",
+        "Architected the back-end application on AWS Lambda to lower ongoing maintenance costs. (Java, Dagger, AWS Lambda, Smithy)",
+        "Designed and implemented the front-end website using React, Redux and TypeScript following best practices to achieve optimal performance and responsiveness in mobile and under poor connectivity. (TypeScript, React, Redux, API Gateway, AWS Lambda)",
+        "Designed the first version of a data processing platform to analyze and detect stuck shipments within the Amazon Fulfillment Network. (AWS Glue, Athena, ECS)",
+        "Supported multiple teams on high severity and low severity incidents, decreasing resolution time.",
+        "Developed a pipeline scanning tool to analyze Full CD best practices across 1,000+ pipelines, and drove its adoption to improve the Full CD posture of 30 pipelines.",
+        "Improved an internal tool for automatic dashboard generation to show configured alert thresholds."
+      ]
+    },
+    {
+      "dates": "May 2017 - May 2020",
+      "title": "Systems Engineer",
+      "org": { "name": "Fundserv", "url": "https://www.fundserv.com" },
+      "highlights": [
+        "Implemented a fully-automated pipeline to provision VMs on VMware ESXi using Jenkins and Ansible.",
+        "Developed customized Ansible inventory plugin to get inventory information via the vSphere Automation SDK.",
+        "Developed a three-tiered Angular/Spring Boot Java application for accounting.",
+        "Developed a new service management facility built on ksh88."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "date": "2019",
+      "title": "Red Hat Certified Systems Administrator",
+      "url": "https://www.redhat.com/en/services/certification/rhcsa",
+      "org": { "name": "Red Hat", "url": "https://www.redhat.com" }
+    },
+    {
+      "date": "2019",
+      "title": "Red Hat Certified Ansible Specialist",
+      "org": { "name": "Red Hat", "url": "https://www.redhat.com" }
+    },
+    {
+      "date": "2018",
+      "title": "Computer Programming Diploma",
+      "url": "https://www.senecapolytechnic.ca/programs/fulltime/CPP.html",
+      "org": { "name": "Seneca College", "url": "https://www.senecapolytechnic.ca" }
+    }
+  ],
+  "demos": [
+    {
+      "id": "tetris",
+      "name": "Tetris",
+      "description": "The C++20 Tetris clone compiled to WebAssembly: the same unit-tested game library as the desktop build, with SRS wall kicks and a 7-bag randomizer, rendered in the browser.",
+      "stack": ["C++20", "WebAssembly", "TypeScript"]
+    }
+  ],
+  "projects": [
+    {
+      "date": "2026",
+      "name": "Tetris",
+      "stack": ["C++20", "SFML"],
+      "description": "Tetris clone with the game logic in a standalone, unit-tested library and an SFML front end. Game state is immutable and deterministic from a seed, with SRS wall kicks and a 7-bag randomizer."
+    },
+    {
+      "date": "2026",
+      "name": "fedora.help",
+      "url": "https://fedora.help",
+      "stack": ["Python", "MkDocs"],
+      "description": "Unofficial guide to the software Fedora cannot ship: multimedia codecs, NVIDIA drivers and third-party repositories."
+    },
+    {
+      "date": "2013",
+      "name": "Email Archiver",
+      "url": "https://crackberry.com/email-archiver-blackberry-10",
+      "stack": ["C++", "Qt/Cascades"],
+      "description": "Native BlackBerry 10 email backup app for offline access. Earned “Built for BlackBerry” for its use of the Qt-based Cascades framework; 10,000+ trial downloads and 1,000+ purchases in its first month; featured on CrackBerry."
+    },
+    {
+      "date": "2013",
+      "name": "BitShortener",
+      "stack": ["C++", "Qt/Cascades"],
+      "description": "Native BlackBerry 10 client for the Bitly URL shortener. Earned “Built for BlackBerry”, which led to BlackBerry awarding me a Limited Edition BlackBerry Z10."
+    }
+  ]
+}

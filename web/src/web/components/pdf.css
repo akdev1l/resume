@@ -1,0 +1,11 @@
+.pdf-page {
+    padding: 0;
+    overflow: hidden;
+    /* the pdf is always black on white, also in pico's dark theme */
+    background-color: white;
+}
+.pdf-page canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+}

@@ -1,0 +1,16 @@
+.entry > header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0 1rem;
+}
+.entry hgroup {
+    margin: 0;
+}
+.entry h3 {
+    font-size: 1.15rem;
+}
+.entry > :last-child {
+    margin-bottom: 0;
+}

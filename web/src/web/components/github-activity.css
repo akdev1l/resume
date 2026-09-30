@@ -1,0 +1,159 @@
+/* bar colour: blue 450 on light, blue 400 on dark (both validated >= 3:1
+   against pico's card surfaces) */
+.gh-activity {
+    --gh-bar: #2a78d6;
+    --gh-bar-active: #1c5cab;
+    --gh-wash: rgba(42, 120, 214, 0.08);
+    margin: var(--pico-spacing) 0 0;
+}
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .gh-activity {
+        --gh-bar: #3987e5;
+        --gh-bar-active: #86b6ef;
+        --gh-wash: rgba(57, 135, 229, 0.14);
+    }
+}
+[data-theme="dark"] .gh-activity {
+    --gh-bar: #3987e5;
+    --gh-bar-active: #86b6ef;
+    --gh-wash: rgba(57, 135, 229, 0.14);
+}
+
+.gh-activity figcaption {
+    margin-bottom: calc(var(--pico-spacing) / 2);
+}
+
+.gh-stats,
+.gh-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    color: var(--pico-muted-color);
+}
+.gh-stats strong,
+.gh-types strong {
+    color: var(--pico-color);
+}
+.gh-types {
+    font-size: 0.875rem;
+    margin-top: calc(var(--pico-spacing) / 2);
+}
+
+/* the plot sits right of a narrow gutter that holds the gridline labels */
+.gh-chart {
+    --gh-gutter: 1.75rem;
+    position: relative;
+    padding-left: var(--gh-gutter);
+}
+.gh-grid {
+    position: absolute;
+    inset: 0 0 1.5rem var(--gh-gutter);
+    pointer-events: none;
+}
+.gh-gridline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px solid var(--pico-muted-border-color);
+}
+.gh-gridline span {
+    position: absolute;
+    right: calc(100% + 0.5rem);
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: var(--pico-muted-color);
+}
+
+.gh-plot {
+    position: relative;
+    height: 9rem;
+    display: grid;
+    align-items: end;
+    border-bottom: 1px solid var(--pico-muted-color);
+    cursor: crosshair;
+}
+.gh-plot:focus-visible {
+    outline: 2px solid var(--pico-primary);
+    outline-offset: 4px;
+}
+.gh-column {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    /* 2px gap between neighbouring bars */
+    padding-inline: 1px;
+}
+.gh-column[data-active] {
+    background-color: var(--gh-wash);
+}
+.gh-bar {
+    width: 100%;
+    max-width: 1.25rem;
+    min-height: 3px;
+    /* rounded data end, square on the baseline */
+    border-radius: 4px 4px 0 0;
+    background-color: var(--gh-bar);
+}
+.gh-column[data-active] .gh-bar {
+    background-color: var(--gh-bar-active);
+}
+
+.gh-axis {
+    display: flex;
+    justify-content: space-between;
+    height: 1.5rem;
+    padding-top: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--pico-muted-color);
+}
+
+.gh-tooltip {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    transform: translateX(-50%);
+    z-index: 5;
+    min-width: 11rem;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    font-size: 0.875rem;
+    pointer-events: none;
+    background-color: var(--pico-card-background-color);
+    border: 1px solid var(--pico-muted-border-color);
+    border-radius: var(--pico-border-radius);
+    box-shadow: var(--pico-card-box-shadow);
+}
+.gh-tooltip[data-edge="start"] {
+    transform: translateX(-1rem);
+}
+.gh-tooltip[data-edge="end"] {
+    transform: translateX(calc(-100% + 1rem));
+}
+.gh-tooltip small {
+    color: var(--pico-muted-color);
+}
+.gh-tooltip ul {
+    margin: 0.25rem 0 0;
+    padding: 0;
+}
+.gh-tooltip li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0;
+}
+.gh-tooltip li span {
+    color: var(--pico-muted-color);
+}
+
+.gh-table {
+    margin-top: var(--pico-spacing);
+    font-size: 0.875rem;
+}
+.gh-table caption {
+    text-align: left;
+    color: var(--pico-muted-color);
+}

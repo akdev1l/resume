@@ -1,0 +1,16 @@
+/* every flag gets the same 3:2 box, so they line up in a list */
+.flag {
+    display: inline-block;
+    width: 1.5em;
+    height: 1em;
+    vertical-align: -0.125em;
+    overflow: hidden;
+    border-radius: 2px;
+    /* hairline so light flag edges don't melt into the page */
+    box-shadow: 0 0 0 1px var(--pico-muted-border-color);
+}
+.flag svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

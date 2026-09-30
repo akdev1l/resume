@@ -5,18 +5,40 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{progressbar}
+% content macros (\resume...), generated from resume.json by util/gen-tex.mjs
+\input{resume-data.tex}
 % remove link decorations: https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks
 \hypersetup{
-    pdftitle={Alex Díaz (akdev/akdev1l) - Resume},
-    pdfauthor={akdev},
-    pdfsubject={Alex Díaz - Resume},
-    pdfkeywords={resume,software engineer,systems development engineer,java,c++,c,python,typescript,rust,aws,lambda,bedrock,devops,linux,ai,llm},
+    pdftitle={\resumeMetaTitle},
+    pdfauthor={\resumeMetaAuthor},
+    pdfsubject={\resumeMetaSubject},
+    pdfkeywords={\resumeMetaKeywords},
     pdfborder=0 0 0,
     colorlinks=false,       % no lik border color
     allbordercolors=white    % white border color for all
 }
 \RequirePackage{xcolor}
 \definecolor{pblue}{HTML}{0395DE}
+
+% let TeX loosen a line as a last resort instead of letting it run into the margin
+\setlength{\emergencystretch}{3em}
+
+% skill chart for the sidebar, one axis per entry in resume.json's "stats";
+% defined here because the aside's \obeycr would break a multi-line tikzpicture.
+\newcommand{\skillchart}{%
+  \pgfmathtruncatemacro\statslast{\resumeStatsCount-1}%
+  \pgfmathsetmacro\statsstep{360/\resumeStatsCount}%
+  \begin{tikzpicture}[scale=0.9]
+    \foreach \rad in {0.25,0.5,0.75,1}
+      \draw[lightgray] (90:\rad) \foreach \i in {1,...,\statslast} { -- (90+\i*\statsstep:\rad) } -- cycle;
+    \foreach \label [count=\i from 0] in \resumeStatsLabels {
+      \draw[lightgray] (0,0) -- (90+\i*\statsstep:1);
+      \node[font=\scriptsize, text=darkgray] at (90+\i*\statsstep:1.3) {\label};
+    }
+    \draw[pblue, thick, fill=pblue, fill opacity=0.25]
+      \resumeStatsShape;
+  \end{tikzpicture}%
+}
 
 % \entry variant without the description line
 \newcommand{\shortentry}[3]{%
@@ -27,8 +49,8 @@
   }
 
 \begin{document}
-\header{Alex}{ Díaz}
-    {}
+\header{\resumeFirstName}{ \resumeLastName}
+    {\resumeHeadline}
 
 % Fake text to add separator      
 \fcolorbox{white}{gray}{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule}{%
@@ -38,148 +60,47 @@
 % In the aside, each new line forces a line break
 \begin{aside}
   \section{Location}
-    Toronto, ON, Canada
+    \resumeLocation
   \section{GitHub}
-    \href{https://github.com/akdev1l}{https://github.com/akdev1l}
+    \resumeGithub
   \section{Mail}
-    \href{mailto:alex@akdev.xyz}{\textbf{alex@}akdev.xyz}
+    \resumeEmail
+  \section{Phone}
+    \resumePhone
     ~
   \section{Programming Languages}
-    \item[\rightarrow] Java
-    \item[\rightarrow] C
-    \item[\rightarrow] C++
-    \item[\rightarrow] Python
-    \item[\rightarrow] TypeScript
-    \item[\rightarrow] Rust
+    \resumeProgrammingLanguages
   \section{Human Languages}
-    \item[\rightarrow]Spanish (Native)
-    \item[\rightarrow]English (Fluent, C2)
+    \resumeHumanLanguages
   \section{Open Source Contributions}
-    \item[\rightarrow]\href{https://github.com/neovim/neovim/pull/34728}{neovim}: Added static build support, closing an 8-year-old feature request.
-    \item[\rightarrow]\href{https://github.com/ublue-os/main}{Universal Blue}: Prototyped NVIDIA drivers packaged as an OSTree OCI image.
+    \resumeOpenSource
 \end{aside}
 
 
 
 \section{Experience}
 \begin{entrylist}
-  \entry
-    {December 2023 - Present}
-    {Sr. Systems Development Engineer - L6}
-    {Amazon}
-    {\begin{itemize}
-        \item Built and own a proactive shipment issue detection system, unblocking $\sim$10M shipments/week and saving $\sim$\$100M annually.
-        \item Led and mentored 6 engineers to bootstrap $\sim$20 critical Amazon Fulfillment Network services in a new region, meeting deadlines and unblocking its launch; authored service-agnostic runbooks so the team needed minimal support from owning teams.
-        \item Own an emergency recovery platform that automates key steps of warehouse recovery after large-scale events (fire, flood, etc.), saving $\sim$8 weeks of labour per incident across 6+ incidents/year.
-        \item Provide high severity support for critical services, documenting and preparing communications to senior leadership.
-        \item Partnered with a Principal Engineer to reproduce the failure behind a prolonged, multi-million-dollar Sev1 outage, enabling its diagnosis and a permanent fix by the owning team with no recurrence since.
-        \item Building an AI-driven test automation platform that uses coverage metrics and API models to generate tests, targeting a 20\% increase in test coverage across the organization.
-    \end{itemize}}
-  \entry
-    {April 2023 - November 2023}
-    {Systems Development Engineer - L5}
-    {Amazon}
-    {\begin{itemize}
-        \item Designed and built a safe inventory deletion system for emergencies in Amazon Warehouses saving $\sim$4000 hours of labour every year summing up to \$5M/yr.
-        \item Led architecture design and execution, mentoring junior engineers through implementation and delivery of a platform processing 5k requests/week.
-        \item Took the lead on technical decisions across the team's projects due to experience and highly technical background.
-        \item Participated in the code review process, delivering feedback effectively to increase team productivity.
-        \item Implemented technically involved parts of ongoing projects (authentication, database access, performance-related functionality).
-    \end{itemize}}
-  \entry
-    {January 2023 - April 2023}
-    {DevOps Engineer - L5}
-    {Amazon}
-    {\begin{itemize}
-        \item Created Web-based tool for recovery during emergencies. It automated a clunky and error-prone manual process which resulted in savings of $\sim$1500 engineer hours per year. (AWS API Gateway, AWS Lambda, DynamoDB, SQS)
-        \item Architected the back-end application on AWS Lambda to lower ongoing maintenance costs. (Java, Dagger, AWS Lambda, Smithy)
-        \item Designed and implemented the front-end website using React, Redux and TypeScript following best practices to achieve optimal performance and responsiveness in mobile and under poor connectivity. (TypeScript, React, Redux, API Gateway, AWS Lambda)
-        \item Designed data processing platform to analyze and detect stuck shipments within the Amazon Fulfillment Network. (AWS Glue, Athena, ECS)
-    \end{itemize}}
-  \entry
-    {June 2020 - December 2022}
-    {DevOps Engineer - L4}
-    {Amazon}
-    {\begin{itemize}
-        \item Supported multiple teams on high severity and low severity incidents, decreasing resolution time.
-        \item Developed a pipeline scanning tool to analyze Full CD best practices on over 1,000 pipelines.
-        \item Supported the use of the pipeline scanning tool leading the improvement of the Full CD posture of 30 pipelines.
-        \item Improved an internal tool for automatic dashboard generation to show configured alert thresholds.
-    \end{itemize}}
-  \entry
-    {May 2017 - May 2020}
-    {Systems Engineer}
-    {Fundserv}
-    {\begin{itemize}
-        \item Implemented a fully-automated pipeline to provision VMs on VMware ESXi\\using Jenkins and Ansible.
-        \item Developed customized Ansible inventory plugin to get inventory information via the vSphere Automation SDK.
-        \item Developed a three-tiered Angular/Spring Boot Java application for accounting.
-        \item Developed a new service management facility built on ksh88.
-    \end{itemize}}
+  \resumeExperience
 \end{entrylist}
 
 % In the aside, each new line forces a line break
 \begin{aside}
-  \section{Location}
-    Toronto, ON, Canada
-  \section{GitHub}
-    \href{https://github.com/akdev1l}{https://github.com/akdev1l}
-  \section{Mail}
-    \href{mailto:alex@akdev.xyz}{\textbf{alex@}akdev.xyz}
-  ~
-  \section{Cloud Services}
-    \item AWS CDK
-    \item CloudFormation
-    \item AWS Lambda
-    \item API Gateway
-    \item DynamoDB
-    \item SQS
-    \item Elastic Container Service
-    \item AWS Glue \& Athena
-  \section{AI/LLM}
-    \item Amazon Bedrock
-    \item AWS Strands
-    \item MCP SDK
-    \item Amazon Q CLI
+  \section{Tech}
+    \resumeTech
   \section{Frameworks}
-    \item Spring
-    \item React \& Redux
-    \item Dagger
-    \item Smithy
+    \resumeFrameworks
+  \section{Stats}
+    \skillchart
     ~
 \end{aside}
 
 \section{Education}
 \begin{entrylist}
-  \shortentry
-    {2021}
-    {AWS Cloud Practitioner}
-    {Amazon Web Services}
-  \shortentry
-    {2019}
-    {Red Hat Certified Systems Administrator}
-    {Red Hat}
-  \shortentry
-    {2019}
-    {Red Hat Certified Ansible Specialist}
-    {Red Hat}
-  \shortentry
-    {2018}
-    {Computer Programming Diploma}
-    {Seneca College}
+  \resumeEducation
 \end{entrylist}
 
 \section{Personal Projects}
 \begin{entrylist}
-  \entry
-    {2026}
-    {\href{https://fedora.help}{fedora.help}}
-    {Python, MkDocs}
-    {Unofficial guide to the software Fedora cannot ship: multimedia codecs, NVIDIA drivers and third-party repositories.}
-  \entry
-    {2023}
-    {\href{https://github.com/akdev1l/rtbox}{rtbox}}
-    {Rust}
-    {Early-stage toolbx-compatible container runtime distributed as a single static binary.}
+  \resumeProjects
 \end{entrylist}
 \end{document}
