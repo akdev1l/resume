@@ -22,6 +22,9 @@ jobs:
       - name: check out repository code
         uses: actions/checkout@v4
 
+      - name: trust the workspace for git inside the container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: render resume
         run: |
           cmake -B build -DRESUME_BUILD_WEB=OFF
@@ -29,8 +32,8 @@ jobs:
 
       - name: push to output branch
         run: |
-          git config --global user.name 'resume-builder'
-          git config --global user.email 'resume-builder@akdev.xyz'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git checkout -b output
           git add -f docs/main.pdf
           git rm -rf .github/workflows
@@ -55,6 +58,9 @@ jobs:
     steps:
       - name: check out repository code
         uses: actions/checkout@v4
+
+      - name: trust the workspace for git inside the container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: build rpm package
         run: |

@@ -22,6 +22,9 @@ jobs:
       - name: check out repository code
         uses: actions/checkout@v4
 
+      - name: trust the workspace for git inside the container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: build web distribution
         run: |
           cmake -B build
