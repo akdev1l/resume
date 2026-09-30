@@ -208,10 +208,13 @@ if(RESUME_STAGE_DOCS)
     set(stage_docs_commands
         COMMAND "${CMAKE_COMMAND}" -E make_directory "${RESUME_DOCS_DIR}")
 
+    # the site fetches /resume.json at runtime, so it ships next to the bundle
     if(RESUME_BUILD_WEB)
         list(APPEND stage_docs_commands
             COMMAND "${CMAKE_COMMAND}" -E copy_directory
-                    "${WEB_BUILD_DIR}/dist" "${RESUME_DOCS_DIR}")
+                    "${WEB_BUILD_DIR}/dist" "${RESUME_DOCS_DIR}"
+            COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+                    "${PROJECT_SOURCE_DIR}/src/resume.json" "${RESUME_DOCS_DIR}/resume.json")
     endif()
     if(RESUME_BUILD_PDF)
         list(APPEND stage_docs_commands

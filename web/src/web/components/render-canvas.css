@@ -1,0 +1,10 @@
+/* render output is always drawn on black, in light and dark themes alike */
+.render-canvas {
+    display: block;
+    width: 100%;
+    max-width: 24rem;
+    height: auto;
+    margin-inline: auto;
+    background-color: #000;
+    border-radius: var(--pico-border-radius);
+}
