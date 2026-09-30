@@ -18,6 +18,24 @@
 \RequirePackage{xcolor}
 \definecolor{pblue}{HTML}{0395DE}
 
+% let TeX loosen a line as a last resort instead of letting it run into the margin
+\setlength{\emergencystretch}{3em}
+
+% pentagon skill chart for the sidebar; defined here because the aside's \obeycr
+% would break a multi-line tikzpicture. Values go from 0 to 1, in label order.
+\newcommand{\skillchart}{%
+  \begin{tikzpicture}[scale=0.9]
+    \foreach \rad in {0.25,0.5,0.75,1}
+      \draw[lightgray] (90:\rad) \foreach \i in {1,...,4} { -- (90+\i*72:\rad) } -- cycle;
+    \foreach \label [count=\i from 0] in {Backend, Frontend, Games, Systems, AI} {
+      \draw[lightgray] (0,0) -- (90+\i*72:1);
+      \node[font=\scriptsize, text=darkgray] at (90+\i*72:1.3) {\label};
+    }
+    \draw[pblue, thick, fill=pblue, fill opacity=0.25]
+      (90:0.9) -- (162:0.6) -- (234:0.3) -- (306:0.9) -- (18:0.9) -- cycle;
+  \end{tikzpicture}%
+}
+
 % \entry variant without the description line
 \newcommand{\shortentry}[3]{%
   \item[#1]
@@ -38,19 +56,21 @@
 % In the aside, each new line forces a line break
 \begin{aside}
   \section{Location}
-    Toronto, ON, Canada
+    \href{https://www.google.com/maps/place/Toronto,+ON,+Canada}{Toronto, ON, Canada}
   \section{GitHub}
-    \href{https://github.com/akdev1l}{https://github.com/akdev1l}
+    \href{https://github.com/akdev1l}{github.com/akdev1l}
   \section{Mail}
-    \href{mailto:alex@akdev.xyz}{\textbf{alex@}akdev.xyz}
+    \href{mailto:hire@alexdiaz.fyi}{{\boldfont hire@}alexdiaz.fyi}
+  \section{Phone}
+    \href{tel:+16174682058}{+1 (617) 468 2058}
     ~
   \section{Programming Languages}
-    \item[\rightarrow] Java
-    \item[\rightarrow] C
-    \item[\rightarrow] C++
-    \item[\rightarrow] Python
-    \item[\rightarrow] TypeScript
-    \item[\rightarrow] Rust
+    \item[\rightarrow] \href{https://dev.java}{Java}
+    \item[\rightarrow] \href{https://www.open-std.org/jtc1/sc22/wg14/}{C}
+    \item[\rightarrow] \href{https://isocpp.org}{C++}
+    \item[\rightarrow] \href{https://www.python.org}{Python}
+    \item[\rightarrow] \href{https://www.typescriptlang.org}{TypeScript}
+    \item[\rightarrow] \href{https://www.rust-lang.org}{Rust}
   \section{Human Languages}
     \item[\rightarrow]Spanish (Native)
     \item[\rightarrow]English (Fluent, C2)
@@ -65,51 +85,42 @@
 \begin{entrylist}
   \entry
     {December 2023 - Present}
-    {Sr. Systems Development Engineer - L6}
-    {Amazon}
+    {Sr. Systems Development Engineer}
+    {\href{https://www.amazon.com}{Amazon}}
     {\begin{itemize}
-        \item Built and own a proactive shipment issue detection system, unblocking $\sim$10M shipments/week and saving $\sim$\$100M annually.
+        \item Grew the stuck-shipment platform I designed in 2023 into a proactive shipment issue detection system I still own, integrated with two partner teams for two critical workflows, unblocking $\sim$10M shipments/week and saving $\sim$\$100M annually.
         \item Led and mentored 6 engineers to bootstrap $\sim$20 critical Amazon Fulfillment Network services in a new region, meeting deadlines and unblocking its launch; authored service-agnostic runbooks so the team needed minimal support from owning teams.
-        \item Own an emergency recovery platform that automates key steps of warehouse recovery after large-scale events (fire, flood, etc.), saving $\sim$8 weeks of labour per incident across 6+ incidents/year.
+        \item Grew the emergency recovery tool I created in 2023 from a single use case into the worldwide standard recovery platform for all Amazon warehouses, automating key steps of warehouse recovery after large-scale events (fire, flood, etc.) and saving $\sim$8 weeks of labour per incident across 6+ incidents/year.
         \item Provide high severity support for critical services, documenting and preparing communications to senior leadership.
         \item Partnered with a Principal Engineer to reproduce the failure behind a prolonged, multi-million-dollar Sev1 outage, enabling its diagnosis and a permanent fix by the owning team with no recurrence since.
         \item Building an AI-driven test automation platform that uses coverage metrics and API models to generate tests, targeting a 20\% increase in test coverage across the organization.
     \end{itemize}}
   \entry
     {April 2023 - November 2023}
-    {Systems Development Engineer - L5}
-    {Amazon}
+    {Systems Development Engineer}
+    {\href{https://www.amazon.com}{Amazon}}
     {\begin{itemize}
         \item Designed and built a safe inventory deletion system for emergencies in Amazon Warehouses saving $\sim$4000 hours of labour every year summing up to \$5M/yr.
         \item Led architecture design and execution, mentoring junior engineers through implementation and delivery of a platform processing 5k requests/week.
-        \item Took the lead on technical decisions across the team's projects due to experience and highly technical background.
-        \item Participated in the code review process, delivering feedback effectively to increase team productivity.
         \item Implemented technically involved parts of ongoing projects (authentication, database access, performance-related functionality).
     \end{itemize}}
   \entry
-    {January 2023 - April 2023}
-    {DevOps Engineer - L5}
-    {Amazon}
+    {June 2020 - April 2023}
+    {DevOps Engineer}
+    {\href{https://www.amazon.com}{Amazon}}
     {\begin{itemize}
-        \item Created Web-based tool for recovery during emergencies. It automated a clunky and error-prone manual process which resulted in savings of $\sim$1500 engineer hours per year. (AWS API Gateway, AWS Lambda, DynamoDB, SQS)
+        \item Created the first version of a web-based emergency recovery tool. It automated a clunky and error-prone manual process which resulted in savings of $\sim$1500 engineer hours per year. (AWS API Gateway, AWS Lambda, DynamoDB, SQS)
         \item Architected the back-end application on AWS Lambda to lower ongoing maintenance costs. (Java, Dagger, AWS Lambda, Smithy)
         \item Designed and implemented the front-end website using React, Redux and TypeScript following best practices to achieve optimal performance and responsiveness in mobile and under poor connectivity. (TypeScript, React, Redux, API Gateway, AWS Lambda)
-        \item Designed data processing platform to analyze and detect stuck shipments within the Amazon Fulfillment Network. (AWS Glue, Athena, ECS)
-    \end{itemize}}
-  \entry
-    {June 2020 - December 2022}
-    {DevOps Engineer - L4}
-    {Amazon}
-    {\begin{itemize}
+        \item Designed the first version of a data processing platform to analyze and detect stuck shipments within the Amazon Fulfillment Network. (AWS Glue, Athena, ECS)
         \item Supported multiple teams on high severity and low severity incidents, decreasing resolution time.
-        \item Developed a pipeline scanning tool to analyze Full CD best practices on over 1,000 pipelines.
-        \item Supported the use of the pipeline scanning tool leading the improvement of the Full CD posture of 30 pipelines.
+        \item Developed a pipeline scanning tool to analyze Full CD best practices across 1,000+ pipelines, and drove its adoption to improve the Full CD posture of 30 pipelines.
         \item Improved an internal tool for automatic dashboard generation to show configured alert thresholds.
     \end{itemize}}
   \entry
     {May 2017 - May 2020}
     {Systems Engineer}
-    {Fundserv}
+    {\href{https://www.fundserv.com}{Fundserv}}
     {\begin{itemize}
         \item Implemented a fully-automated pipeline to provision VMs on VMware ESXi\\using Jenkins and Ansible.
         \item Developed customized Ansible inventory plugin to get inventory information via the vSphere Automation SDK.
@@ -120,66 +131,59 @@
 
 % In the aside, each new line forces a line break
 \begin{aside}
-  \section{Location}
-    Toronto, ON, Canada
-  \section{GitHub}
-    \href{https://github.com/akdev1l}{https://github.com/akdev1l}
-  \section{Mail}
-    \href{mailto:alex@akdev.xyz}{\textbf{alex@}akdev.xyz}
-  ~
-  \section{Cloud Services}
-    \item AWS CDK
-    \item CloudFormation
-    \item AWS Lambda
-    \item API Gateway
-    \item DynamoDB
-    \item SQS
-    \item Elastic Container Service
-    \item AWS Glue \& Athena
-  \section{AI/LLM}
-    \item Amazon Bedrock
-    \item AWS Strands
-    \item MCP SDK
-    \item Amazon Q CLI
+  \section{Tech}
+    \item[\rightarrow] \href{https://aws.amazon.com}{AWS}
+    \item[\rightarrow] \href{https://www.docker.com}{Docker}
+    \item[\rightarrow] \href{https://kubernetes.io}{Kubernetes}
+    \item[\rightarrow] \href{https://developer.hashicorp.com/terraform}{Terraform}
   \section{Frameworks}
-    \item Spring
-    \item React \& Redux
-    \item Dagger
-    \item Smithy
+    \item[\rightarrow] \href{https://www.qt.io}{Qt}
+    \item[\rightarrow] \href{https://www.boost.org}{Boost}
+    \item[\rightarrow] \href{https://abseil.io}{Abseil}
+    \item[\rightarrow] \href{https://www.sfml-dev.org}{SFML}
+    \item[\rightarrow] \href{https://github.com/ocornut/imgui}{Dear ImGui}
+  \section{Stats}
+    \skillchart
     ~
 \end{aside}
 
 \section{Education}
 \begin{entrylist}
   \shortentry
-    {2021}
-    {AWS Cloud Practitioner}
-    {Amazon Web Services}
-  \shortentry
     {2019}
-    {Red Hat Certified Systems Administrator}
-    {Red Hat}
+    {\href{https://www.redhat.com/en/services/certification/rhcsa}{Red Hat Certified Systems Administrator}}
+    {\href{https://www.redhat.com}{Red Hat}}
   \shortentry
     {2019}
     {Red Hat Certified Ansible Specialist}
-    {Red Hat}
+    {\href{https://www.redhat.com}{Red Hat}}
   \shortentry
     {2018}
-    {Computer Programming Diploma}
-    {Seneca College}
+    {\href{https://www.senecapolytechnic.ca/programs/fulltime/CPP.html}{Computer Programming Diploma}}
+    {\href{https://www.senecapolytechnic.ca}{Seneca College}}
 \end{entrylist}
 
 \section{Personal Projects}
 \begin{entrylist}
   \entry
     {2026}
+    {Tetris}
+    {C++20, SFML}
+    {Tetris clone with the game logic in a standalone, unit-tested library and an SFML front end. Game state is immutable and deterministic from a seed, with SRS wall kicks and a 7-bag randomizer.}
+  \entry
+    {2026}
     {\href{https://fedora.help}{fedora.help}}
     {Python, MkDocs}
     {Unofficial guide to the software Fedora cannot ship: multimedia codecs, NVIDIA drivers and third-party repositories.}
   \entry
-    {2023}
-    {\href{https://github.com/akdev1l/rtbox}{rtbox}}
-    {Rust}
-    {Early-stage toolbx-compatible container runtime distributed as a single static binary.}
+    {2013}
+    {\href{https://crackberry.com/email-archiver-blackberry-10}{Email Archiver}}
+    {C++, Qt/Cascades}
+    {Native BlackBerry 10 email backup app for offline access. Earned “Built for BlackBerry” for its use of the Qt-based Cascades framework; 10,000+ trial downloads and 1,000+ purchases in its first month; featured on CrackBerry.}
+  \entry
+    {2013}
+    {BitShortener}
+    {C++, Qt/Cascades}
+    {Native BlackBerry 10 client for the Bitly URL shortener. Earned “Built for BlackBerry”, which led to BlackBerry awarding me a Limited Edition BlackBerry Z10.}
 \end{entrylist}
 \end{document}
