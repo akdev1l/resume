@@ -144,10 +144,16 @@ if(RESUME_BUILD_WEB)
         set(node_pm "${RESUME_NODE_PACKAGE_MANAGER}")
     endif()
 
-    find_program(NODE_PM_EXECUTABLE "${node_pm}" REQUIRED)
+    # One cache entry per package manager: a single shared one would keep
+    # pointing at npm after the project switched to pnpm.
+    string(TOUPPER "${node_pm}" node_pm_upper)
+    find_program(${node_pm_upper}_EXECUTABLE "${node_pm}" REQUIRED)
+    set(node_pm_executable "${${node_pm_upper}_EXECUTABLE}")
 
     if(node_pm STREQUAL "pnpm")
-        set(node_install_args install --frozen-lockfile)
+        # replace a node_modules another package manager left behind instead
+        # of asking, which fails without a terminal
+        set(node_install_args install --frozen-lockfile --config.confirmModulesPurge=false)
     else()
         set(node_install_args ci)
     endif()
@@ -184,14 +190,21 @@ if(RESUME_BUILD_WEB)
     # created by one of the COMMANDs below.
     file(MAKE_DIRECTORY "${WEB_BUILD_DIR}")
 
+    # The previous copy goes first, so files deleted from web/ (an old
+    # lockfile, a renamed source) don't linger in the build.
+    set(web_previous_copy "${WEB_BUILD_DIR}/dist" "${WEB_BUILD_DIR}/src" "${WEB_BUILD_DIR}/public")
+    foreach(entry IN LISTS web_copy_candidates)
+        list(APPEND web_previous_copy "${WEB_BUILD_DIR}/${entry}")
+    endforeach()
+
     add_custom_command(
         OUTPUT "${WEB_BUILD_DIR}/dist/index.html"
-        COMMAND "${CMAKE_COMMAND}" -E rm -rf "${WEB_BUILD_DIR}/dist"
+        COMMAND "${CMAKE_COMMAND}" -E rm -rf ${web_previous_copy}
         COMMAND "${CMAKE_COMMAND}" -E copy_directory
                 "${WEB_SOURCE_DIR}/src" "${WEB_BUILD_DIR}/src"
         ${web_copy_commands}
-        COMMAND "${NODE_PM_EXECUTABLE}" ${node_install_args}
-        COMMAND "${NODE_PM_EXECUTABLE}" run build
+        COMMAND "${node_pm_executable}" ${node_install_args}
+        COMMAND "${node_pm_executable}" run build
         WORKING_DIRECTORY "${WEB_BUILD_DIR}"
         DEPENDS ${web_copy_depends} ${web_src_files}
         COMMENT "Building web/ with ${node_pm}"
