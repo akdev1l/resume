@@ -10,6 +10,7 @@ Source: {{{ git_archive path="." }}}
 
 BuildArch:  noarch
 BuildRequires: /usr/bin/xelatex
+BuildRequires: /usr/bin/node
 BuildRequires: texlive-parskip
 BuildRequires: lato-fonts
 BuildRequires: lilypond-fonts-common

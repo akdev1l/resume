@@ -36,20 +36,37 @@ set(stage_docs_deps "")
 #
 if(RESUME_BUILD_PDF)
     find_program(XELATEX_EXECUTABLE xelatex REQUIRED)
+    find_program(NODE_EXECUTABLE node REQUIRED)
+
+    # The resume content lives in resume.json; main.tex only lays it out and
+    # \input's the macros generated here.
+    add_custom_command(
+        OUTPUT "${PROJECT_BINARY_DIR}/resume-data.tex"
+        COMMAND "${NODE_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/util/gen-tex.mjs"
+                "${PROJECT_SOURCE_DIR}/src/resume.json"
+                "${PROJECT_BINARY_DIR}/resume-data.tex"
+        DEPENDS "${PROJECT_SOURCE_DIR}/src/resume.json"
+                "${PROJECT_SOURCE_DIR}/util/gen-tex.mjs"
+        COMMENT "Generating resume-data.tex from resume.json"
+        VERBATIM)
 
     # xelatex is run twice: the first pass writes the aux files the
     # progressbar/textpos macros need, the second one produces the pdf.
+    # TEXINPUTS lets main.tex find the generated file; the trailing path
+    # separator keeps the default search path.
+    set(xelatex_env "${CMAKE_COMMAND}" -E env "TEXINPUTS=${PROJECT_BINARY_DIR}:")
     add_custom_command(
         OUTPUT "${PROJECT_BINARY_DIR}/main.pdf"
-        COMMAND "${XELATEX_EXECUTABLE}"
+        COMMAND ${xelatex_env} "${XELATEX_EXECUTABLE}"
                 -halt-on-error -interaction=nonstopmode
                 "--output-directory=${PROJECT_BINARY_DIR}" -no-pdf main.tex
-        COMMAND "${XELATEX_EXECUTABLE}"
+        COMMAND ${xelatex_env} "${XELATEX_EXECUTABLE}"
                 -halt-on-error -interaction=nonstopmode
                 "--output-directory=${PROJECT_BINARY_DIR}" main.tex
         WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/src"
         DEPENDS "${PROJECT_SOURCE_DIR}/src/main.tex"
                 "${PROJECT_SOURCE_DIR}/src/friggeri-cv.cls"
+                "${PROJECT_BINARY_DIR}/resume-data.tex"
         COMMENT "Rendering main.pdf with xelatex"
         VERBATIM)
 
