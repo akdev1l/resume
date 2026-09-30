@@ -9,23 +9,24 @@ VCS:        {{{ git_dir_vcs }}}
 Source: {{{ git_archive path="." }}}
 
 BuildArch:  noarch
-BuildRequires: nodejs
 BuildRequires: /usr/bin/xelatex
 BuildRequires: texlive-parskip
+BuildRequires: lato-fonts
 BuildRequires: lilypond-fonts-common
 BuildRequires: texlive-textpos
 BuildRequires: texlive-biblatex
 BuildRequires: texlive-progressbar
 BuildRequires: texlive-firstaid
-BuildRequires: lato-fonts
+BuildRequires: texlive-enumitem
+BuildRequires: texlive-geometry
 BuildRequires: texlive-lato
 BuildRequires: texlive-tex-gyre
-BuildRequires: make
+BuildRequires: texlive-unicode-math
+BuildRequires: cmake
 BuildRequires: rpkg
 BuildRequires: python-setuptools
 BuildRequires: /usr/bin/rpmbuild
 BuildRequires: aspell-en
-BuildRequires: texlive-unicode-math
 
 %description
 This is a test package.
@@ -34,12 +35,16 @@ This is a test package.
 {{{ git_dir_setup_macro path="." }}}
 
 %build
-make
+# The web viewer is not packaged and its build needs network access, and docs/
+# is the published site rather than something that belongs in a buildroot.
+%cmake \
+    --no-warn-unused-cli \
+    -DRESUME_BUILD_WEB:BOOL=OFF \
+    -DRESUME_STAGE_DOCS:BOOL=OFF
+%cmake_build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-ls
-make install INSTALL_DIR=$RPM_BUILD_ROOT
+%cmake_install
 
 %files
 %{_datadir}/akdev

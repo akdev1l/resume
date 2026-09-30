@@ -1,12 +1,15 @@
-FROM fedora:38
+FROM fedora:44
 
-RUN dnf install -y \
-    'dnf-command(config-manager)' \
-    'dnf-command(builddep)' \
-    rpkg \
-    python-setuptools && \
-    dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo && \
-    dnf install gh -y
+RUN dnf config-manager addrepo \
+        --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo \
+    && \
+    dnf install -y  \
+        rpkg \
+        python-setuptools \
+        gh \
+        nodejs24 \
+        nodejs24-npm \
+        pnpm
 
 COPY . /tmp/workdir
 WORKDIR /tmp/workdir

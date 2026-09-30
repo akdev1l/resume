@@ -2,3 +2,5 @@
 build
 web/node_modules
 .DS_Store
+/web/dist
+/web/.pnpm-store

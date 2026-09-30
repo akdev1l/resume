@@ -22,7 +22,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: build web distribution
-        run: make resume-web
+        run: |
+          cmake -B build
+          cmake --build build
 
       - name: upload resume-web artifact
         uses: actions/upload-artifact@v2

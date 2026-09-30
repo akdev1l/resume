@@ -32,7 +32,8 @@ Dependencies are captured in the Containerfile, it should be as easy as:
 
 ```
 $ podman build -t akdev/resume-writer:latest . 
-$ podman run -v $PWD:$PWD -w $PWD akdev/resume-write:latest make
+$ podman run -v $PWD:$PWD -w $PWD akdev/resume-write:latest \
+    sh -c 'cmake -B build && cmake --build build'
 ```
 
 ## Github Workflows
