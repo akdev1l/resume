@@ -10,7 +10,7 @@ on:
 jobs:
   build-resume:
     permissions:
-      contents: read
+      contents: write
       packages: write
     runs-on: ubuntu-latest
     container: 
