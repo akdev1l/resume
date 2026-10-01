@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import { Link } from "react-router";
 
 import { PDF_PATH, sectionPath } from "../../core/route";
@@ -39,6 +39,18 @@ export function SideNav() {
 
   const close = () => setOpen(false);
 
+  // The tab toggles for touch and keyboard. A mouse has already opened the
+  // drawer by hovering, so its click must not toggle it shut again; moving
+  // the mouse away is what closes it.
+  // Browsers report the pointer on the click itself; pointerdown covers
+  // those that don't.
+  const lastPointer = useRef("");
+  const onTabClick = (e: MouseEvent) => {
+    const pointer = (e.nativeEvent as globalThis.PointerEvent).pointerType || lastPointer.current;
+    lastPointer.current = "";
+    setOpen((current) => (pointer === "mouse" ? true : !current));
+  };
+
   return (
     <aside
       ref={drawer}
@@ -69,7 +81,8 @@ export function SideNav() {
         aria-controls="side-nav-panel"
         aria-expanded={open}
         aria-label={open ? "Hide sections" : "Show sections"}
-        onClick={() => setOpen(!open)}
+        onPointerDown={(e) => (lastPointer.current = e.pointerType)}
+        onClick={onTabClick}
       />
     </aside>
   );
