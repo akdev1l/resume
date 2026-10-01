@@ -3,7 +3,10 @@
 The resume as a web page: Vite, TypeScript, React and [Pico CSS](https://picocss.com).
 
 The content is fetched at runtime from `/resume.json`, the same file the LaTeX
-build uses (`../src/resume.json`). The published pdf is shown at `#/main.pdf`.
+build uses (`../src/resume.json`). Pages are routed with React Router:
+`/` is the resume, `/pdf` the published pdf and `/demo/<id>` a tech demo.
+GitHub Pages can't rewrite those paths, so the build also writes `404.html`, a
+copy of `index.html` that boots the app for any path.
 
 ```
 pnpm install

@@ -1,0 +1,40 @@
+/* The [role="group"] in the selectors outranks pico's own group rules,
+   which would stretch the control to full width and square its buttons. */
+.segmented-control[role="group"] {
+    display: inline-flex;
+    width: auto;
+    margin: 0;
+    gap: 0.125rem;
+    padding: 0.125rem;
+    border: var(--pico-border-width) solid var(--pico-muted-border-color);
+    border-radius: 999px;
+    background-color: var(--pico-background-color);
+    box-shadow: none;
+}
+.segmented-control[role="group"] > button {
+    flex: none;
+    display: grid;
+    place-items: center;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0;
+    padding: 0 0.5rem;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--pico-muted-color);
+    background: none;
+    box-shadow: none;
+}
+.segmented-control[role="group"] > button:hover {
+    color: var(--pico-color);
+}
+.segmented-control[role="group"] > button[aria-pressed="true"] {
+    color: var(--pico-primary-inverse);
+    background-color: var(--pico-primary-background);
+}
+.segmented-control[role="group"] > button:focus-visible {
+    outline: 2px solid var(--pico-primary);
+    outline-offset: 1px;
+}

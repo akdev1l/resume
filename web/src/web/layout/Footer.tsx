@@ -1,4 +1,4 @@
-import { DEFAULT_PDF_URL } from "../../core/route";
+import { PDF_URL } from "../../core/route";
 
 export function Footer({ name }: { name: string }) {
   return (
@@ -6,7 +6,7 @@ export function Footer({ name }: { name: string }) {
       <small>
         © {new Date().getFullYear()} {name} ·{" "}
         <a href="https://github.com/akdev1l/resume">Source on GitHub</a> ·{" "}
-        <a href={DEFAULT_PDF_URL} download>
+        <a href={PDF_URL} download>
           Download PDF
         </a>
       </small>

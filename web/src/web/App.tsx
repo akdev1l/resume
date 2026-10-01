@@ -1,9 +1,11 @@
-import { lazy, Suspense, useEffect, useState, useSyncExternalStore } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router";
 
 import { loadResume, type Resume } from "../core/resume";
-import { DEFAULT_PDF_URL, routeFromHash, type Route } from "../core/route";
+import { PDF_PATH, PDF_URL } from "../core/route";
 import { Layout } from "./layout/Layout";
 import { DemoPage } from "./pages/DemoPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 import { ResumePage } from "./pages/ResumePage";
 
 // pdf.js is most of the bundle; only fetch it when the viewer is opened
@@ -38,16 +40,19 @@ function useResume(): ResumeState {
   return state;
 }
 
-const subscribe = (onChange: () => void) => {
-  window.addEventListener("hashchange", onChange);
-  return () => window.removeEventListener("hashchange", onChange);
-};
-
-const getHash = () => window.location.hash;
+// A new page starts at the top, unless the link points at a section.
+function useScrollToTopOnNavigate() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+}
 
 export function App() {
   const state = useResume();
-  const route = routeFromHash(useSyncExternalStore(subscribe, getHash), window.location.origin);
+  useScrollToTopOnNavigate();
 
   switch (state.status) {
     case "loading":
@@ -56,7 +61,7 @@ export function App() {
       return (
         <main className="container">
           <p>
-            The resume could not be loaded. The <a href={DEFAULT_PDF_URL}>pdf version</a> may
+            The resume could not be loaded. The <a href={PDF_URL}>pdf version</a> may
             still work.
           </p>
         </main>
@@ -64,23 +69,20 @@ export function App() {
     case "ready":
       return (
         <Layout resume={state.resume}>
-          <Page route={route} resume={state.resume} />
+          <Routes>
+            <Route path="/" element={<ResumePage resume={state.resume} />} />
+            <Route
+              path={PDF_PATH}
+              element={
+                <Suspense fallback={<article aria-busy="true" />}>
+                  <ViewerPage url={PDF_URL} />
+                </Suspense>
+              }
+            />
+            <Route path="/demo/:id" element={<DemoPage demos={state.resume.demos} />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
         </Layout>
       );
-  }
-}
-
-function Page({ route, resume }: { route: Route; resume: Resume }) {
-  switch (route.page) {
-    case "pdf":
-      return (
-        <Suspense fallback={<article aria-busy="true" />}>
-          <ViewerPage url={route.url} />
-        </Suspense>
-      );
-    case "demo":
-      return <DemoPage id={route.id} demo={resume.demos.find((d) => d.id === route.id)} />;
-    case "resume":
-      return <ResumePage resume={resume} />;
   }
 }

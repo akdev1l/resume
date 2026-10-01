@@ -1,4 +1,5 @@
-import { readFile } from "node:fs/promises";
+import { copyFile, readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { defineConfig, type Plugin } from "vite";
@@ -19,8 +20,20 @@ const serveResumeData = (): Plugin => ({
   },
 });
 
+// GitHub Pages can't rewrite /pdf or /demo/tetris to index.html, but it
+// serves 404.html for any missing path: as a copy of index.html it boots the
+// app, and the router shows the right page.
+const spaFallback = (): Plugin => ({
+  name: "spa-404-fallback",
+  apply: "build",
+  async writeBundle(options) {
+    const dir = options.dir!;
+    await copyFile(join(dir, "index.html"), join(dir, "404.html"));
+  },
+});
+
 export default defineConfig({
-  plugins: [react(), serveResumeData()],
+  plugins: [react(), serveResumeData(), spaFallback()],
   // listen on every interface so the page can be opened from outside the
   // build container
   server: { host: "0.0.0.0" },
