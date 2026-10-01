@@ -10,8 +10,8 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-  // build output, and the vendored Emscripten build of libtetris
-  globalIgnores(["dist", "src/core/wasm"]),
+  // build and coverage output, and the vendored Emscripten build of libtetris
+  globalIgnores(["dist", "coverage", "src/core/wasm"]),
 
   {
     files: ["**/*.{ts,tsx}"],
