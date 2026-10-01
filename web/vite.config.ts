@@ -2,7 +2,8 @@ import { copyFile, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { defineConfig, type Plugin } from "vite";
+import type { Plugin } from "vite";
+import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
 // The resume content lives next to main.tex so the pdf and the site share it.
@@ -46,4 +47,34 @@ export default defineConfig({
   // build container
   server: { host: "0.0.0.0" },
   preview: { host: "0.0.0.0" },
+  // unit tests: `pnpm test`; components render into jsdom
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./src/test/setup.ts"],
+    restoreMocks: true,
+    unstubGlobals: true,
+    // `pnpm test:coverage`: summary in the terminal, browsable report in
+    // coverage/index.html, lcov for CI tools
+    coverage: {
+      provider: "v8",
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "src/**/*.test.{ts,tsx}",
+        "src/test/**",
+        // vendored Emscripten build of libtetris
+        "src/core/wasm/**",
+        // entry point: only wires React to the page
+        "src/web/main.tsx",
+      ],
+      reporter: ["text", "html", "lcov"],
+      // the run fails below these: today's coverage rounded down, so it can
+      // only go up; raise them as tests are added
+      thresholds: {
+        statements: 91,
+        branches: 85,
+        functions: 90,
+        lines: 91,
+      },
+    },
+  },
 });
