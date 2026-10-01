@@ -3,7 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>pdfviewer.js</title>
+        <title>Alex Díaz - Resume</title>
+        <script>
+            // apply the saved theme before the first paint (see src/core/theme.ts)
+            try {
+                const theme = localStorage.getItem("theme");
+                if (theme === "light" || theme === "dark") {
+                    document.documentElement.setAttribute("data-theme", theme);
+                }
+            } catch {}
+        </script>
     </head>
     <body>
         <div id="app-root"></div>

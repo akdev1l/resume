@@ -1,28 +1,9 @@
-.inline-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 1.25rem;
-    padding: 0;
-}
-.inline-list li {
-    list-style: none;
-}
-
-.skills {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(10rem, 18rem);
-    align-items: center;
-    gap: 2rem;
-}
-@media (max-width: 576px) {
-    .skills {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
 .stats-chart {
+    display: block;
     width: 100%;
+    max-width: 18rem;
     height: auto;
+    margin-inline: auto;
     font-size: 0.22px;
 }
 .stats-grid {
@@ -38,18 +19,6 @@
 }
 .stats-chart text {
     fill: var(--pico-muted-color);
-}
-
-.contact {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 0.25rem 1.5rem;
-}
-.contact dt {
-    font-weight: bold;
-}
-.contact dd {
-    margin: 0;
 }
 
 .about {

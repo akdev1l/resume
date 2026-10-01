@@ -6,7 +6,11 @@
 
 /* top third of the screen: name and description, picture on the side */
 .top-bar {
+    position: relative;
     min-height: 33vh;
+    /* breathing room when the content is taller than a third of the screen,
+       plus space at the top for the settings controls */
+    padding-block: calc(var(--pico-block-spacing-vertical) + 2.5rem) var(--pico-block-spacing-vertical);
     display: flex;
     align-items: center;
     background-color: var(--pico-card-sectioning-background-color);
@@ -20,6 +24,39 @@
 }
 .top-bar hgroup {
     margin: 0;
+}
+/* contact links under the subtitle, separated by dots, wrapping as needed */
+.top-bar-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    font-size: 0.9375rem;
+}
+.top-bar-contact li {
+    list-style: none;
+    margin: 0;
+}
+/* a link never breaks in the middle, e.g. "Toronto, ON, Canada" */
+.top-bar a {
+    white-space: nowrap;
+}
+.top-bar-contact li + li::before {
+    content: "·";
+    margin-inline: 0.6rem;
+    color: var(--pico-muted-color);
+}
+/* settings controls (theme, language), pinned to the top-right corner */
+.top-bar-tools {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
 }
 .top-bar h1 {
     font-size: clamp(2rem, 6vw, 3.5rem);
@@ -122,5 +159,20 @@ main section[id] {
     .top-bar-content {
         flex-direction: column-reverse;
         text-align: center;
+    }
+    /* one link per line: a wrapped row would start with a stray dot */
+    .top-bar-contact {
+        flex-direction: column;
+        align-items: center;
+    }
+    .top-bar-contact li + li::before {
+        content: none;
+    }
+    /* the location gets its own line instead of a dangling dot */
+    .top-bar-separator {
+        display: none;
+    }
+    .top-bar-location {
+        display: block;
     }
 }

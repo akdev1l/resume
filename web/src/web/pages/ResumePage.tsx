@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from "react";
+import { useLocation } from "react-router";
 
-import { githubUser, type Named, type Resume } from "../../core/resume";
+import { githubUser, type Resume } from "../../core/resume";
 import { SECTIONS, type SectionId } from "../../core/sections";
 import { DemoCard } from "../components/DemoCard";
 import { Entry } from "../components/Entry";
@@ -8,17 +9,9 @@ import { Flag } from "../components/Flag";
 import { GitHubActivity } from "../components/GitHubActivity";
 import { NamedLink } from "../components/NamedLink";
 import { StatsChart } from "../components/StatsChart";
+import { TechTiles } from "../components/TechTiles";
+import { PageTitle } from "../layout/PageTitle";
 import "./resume.css";
-
-const InlineList = ({ items }: { items: Named[] }) => (
-  <ul className="inline-list">
-    {items.map((item) => (
-      <li key={item.name}>
-        <NamedLink item={item} />
-      </li>
-    ))}
-  </ul>
-);
 
 const CONTENT: Record<SectionId, (resume: Resume) => ReactNode> = {
   about: (resume) => (
@@ -73,28 +66,19 @@ const CONTENT: Record<SectionId, (resume: Resume) => ReactNode> = {
     </div>
   ),
 
-  "open-source": (resume) => (
-    <ul>
-      {resume.openSource.map((p) => (
-        <li key={p.name}>
-          <NamedLink item={p} />: {p.description}
-        </li>
-      ))}
-    </ul>
-  ),
+  "open-source": (resume) => <TechTiles items={resume.openSource} />,
 
   skills: (resume) => (
-    <div className="skills">
-      <div>
-        <h3>Programming Languages</h3>
-        <InlineList items={resume.programmingLanguages} />
-        <h3>Tech</h3>
-        <InlineList items={resume.tech} />
-        <h3>Frameworks</h3>
-        <InlineList items={resume.frameworks} />
-      </div>
+    <>
+      <h3>Programming Languages</h3>
+      <TechTiles items={resume.programmingLanguages} />
+      <h3>Tech</h3>
+      <TechTiles items={resume.tech} />
+      <h3>Frameworks</h3>
+      <TechTiles items={resume.frameworks} />
+      <h3>Stats</h3>
       <StatsChart stats={resume.stats} />
-    </div>
+    </>
   ),
 
   languages: (resume) => (
@@ -107,42 +91,28 @@ const CONTENT: Record<SectionId, (resume: Resume) => ReactNode> = {
     </ul>
   ),
 
-  contact: (resume) => {
-    const { location, github, email, phone } = resume.contact;
-    return (
-      <dl className="contact">
-        <dt>Location</dt>
-        <dd>
-          <a href={location.url}>{location.text}</a>
-        </dd>
-        <dt>GitHub</dt>
-        <dd>
-          <a href={github.url}>{github.text}</a>
-        </dd>
-        <dt>Mail</dt>
-        <dd>
-          <a href={`mailto:${email}`}>{email}</a>
-        </dd>
-        <dt>Phone</dt>
-        <dd>
-          <a href={`tel:${phone.number}`}>{phone.text}</a>
-        </dd>
-      </dl>
-    );
-  },
 };
 
 export function ResumePage({ resume }: { resume: Resume }) {
-  // coming back from the pdf viewer through a section link: the browser tried
-  // to scroll before the section existed, so do it once it does
+  // Router navigation doesn't scroll to anchors by itself, and on a fresh
+  // load the sections only exist once resume.json has arrived; `key` makes a
+  // second click on the same section link scroll again too.
+  const { hash, key } = useLocation();
   useEffect(() => {
-    document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
-  }, []);
+    if (hash) {
+      document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView();
+    }
+  }, [hash, key]);
 
-  return SECTIONS.map(({ id, title }) => (
-    <section key={id} id={id}>
-      <h2>{title}</h2>
-      {CONTENT[id](resume)}
-    </section>
-  ));
+  return (
+    <>
+      <PageTitle title="Resume" />
+      {SECTIONS.map(({ id, title }) => (
+        <section key={id} id={id}>
+          <h2>{title}</h2>
+          {CONTENT[id](resume)}
+        </section>
+      ))}
+    </>
+  );
 }

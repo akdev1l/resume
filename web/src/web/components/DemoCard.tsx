@@ -1,10 +1,10 @@
+import { Link } from "react-router";
+
 import type { Demo } from "../../core/resume";
-import { demoHref } from "../../core/route";
+import { demoPath } from "../../core/route";
 
 // One tech demo: what it is, what it's built with, and where to try it.
 export function DemoCard({ demo }: { demo: Demo }) {
-  const href = demo.id ? demoHref(demo.id) : demo.url;
-
   return (
     <article className="demo-card">
       <header>
@@ -12,12 +12,18 @@ export function DemoCard({ demo }: { demo: Demo }) {
         <small>{demo.stack.join(", ")}</small>
       </header>
       <p>{demo.description}</p>
-      {(href || demo.source) && (
+      {(demo.id || demo.url || demo.source) && (
         <footer>
-          {href && (
-            <a href={href} role="button">
+          {demo.id ? (
+            <Link to={demoPath(demo.id)} role="button">
               Try the demo
-            </a>
+            </Link>
+          ) : (
+            demo.url && (
+              <a href={demo.url} role="button">
+                Try the demo
+              </a>
+            )
           )}
           {demo.source && (
             <a href={demo.source} role="button" className="secondary outline">

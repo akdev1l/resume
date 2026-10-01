@@ -1,31 +1,20 @@
-// The hash picks the page: `#/demo/<id>` opens a tech demo, `#/some.pdf` the
-// pdf viewer, and anything else (including section anchors like
-// `#experience`) is the resume itself.
-export const DEFAULT_PDF_URL = "/main.pdf";
+// Paths of the site's pages. Section anchors like #experience belong to the
+// resume at "/", so links to them work from every page.
+export const PDF_URL = "/main.pdf";
+export const PDF_PATH = "/pdf";
 
-export type Route = { page: "resume" } | { page: "pdf"; url: string } | { page: "demo"; id: string };
+export const demoPath = (id: string): string => `/demo/${encodeURIComponent(id)}`;
 
-const DEMO_PREFIX = "#/demo/";
+export const sectionPath = (id: string): string => `/#${id}`;
 
-export const demoHref = (id: string): string => `${DEMO_PREFIX}${encodeURIComponent(id)}`;
-
-export function routeFromHash(hash: string, origin: string): Route {
-  if (hash.startsWith(DEMO_PREFIX)) {
-    return { page: "demo", id: decodeURIComponent(hash.slice(DEMO_PREFIX.length)) };
+// Before path routing the pages lived in the hash (#/pdf, #/main.pdf,
+// #/demo/<id>); links shared back then map to their path here.
+export function legacyHashPath(hash: string): string | null {
+  if (hash === "#/pdf" || hash === "#/main.pdf") {
+    return PDF_PATH;
   }
-  if (!hash.startsWith("#/")) {
-    return { page: "resume" };
+  if (hash.startsWith("#/demo/")) {
+    return `/demo/${hash.slice("#/demo/".length)}`;
   }
-  return { page: "pdf", url: sameOriginPath(hash.slice(1), origin) };
-}
-
-// Only same-origin documents are allowed, so a crafted link cannot make the
-// viewer load and run an arbitrary pdf from somewhere else.
-function sameOriginPath(requested: string, origin: string): string {
-  try {
-    const url = new URL(requested, origin);
-    return url.origin === origin ? url.pathname + url.search : DEFAULT_PDF_URL;
-  } catch {
-    return DEFAULT_PDF_URL;
-  }
+  return null;
 }

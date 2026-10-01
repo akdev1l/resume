@@ -13,7 +13,7 @@ const RENDER_SCALE = 1.7;
 
 export interface Task<T> {
   promise: Promise<T>;
-  cancel(): void;
+  cancel: () => void;
 }
 
 export function openDocument(url: string): Task<PDFPageProxy[]> {

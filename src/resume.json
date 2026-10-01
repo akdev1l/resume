@@ -69,12 +69,12 @@
     }
   },
   "programmingLanguages": [
-    { "name": "Java", "url": "https://dev.java" },
-    { "name": "C", "url": "https://www.open-std.org/jtc1/sc22/wg14/" },
-    { "name": "C++", "url": "https://isocpp.org" },
-    { "name": "Python", "url": "https://www.python.org" },
-    { "name": "TypeScript", "url": "https://www.typescriptlang.org" },
-    { "name": "Rust", "url": "https://www.rust-lang.org" }
+    { "name": "Java", "url": "https://dev.java", "logo": "openjdk", "description": "Statically typed language for the JVM, widely used for backend services." },
+    { "name": "C", "url": "https://www.open-std.org/jtc1/sc22/wg14/", "logo": "c", "description": "Low-level systems language behind operating systems and embedded software." },
+    { "name": "C++", "url": "https://isocpp.org", "logo": "cplusplus", "description": "Systems language that builds on C with classes, templates and zero-cost abstractions." },
+    { "name": "Python", "url": "https://www.python.org", "logo": "python", "description": "Dynamic language for scripting, automation and data processing." },
+    { "name": "TypeScript", "url": "https://www.typescriptlang.org", "logo": "typescript", "description": "JavaScript with static types, for maintainable web front ends." },
+    { "name": "Rust", "url": "https://www.rust-lang.org", "logo": "rust", "description": "Memory-safe systems language without a garbage collector." }
   ],
   "humanLanguages": [
     { "name": "Spanish", "level": "Native", "flag": "es" },
@@ -82,28 +82,30 @@
   ],
   "openSource": [
     {
-      "name": "neovim",
+      "name": "Neovim",
       "url": "https://github.com/neovim/neovim/pull/34728",
+      "logo": "neovim",
       "description": "Added static build support, closing an 8-year-old feature request."
     },
     {
       "name": "Universal Blue",
       "url": "https://github.com/ublue-os/main",
+      "logo": "/logos/universal-blue.webp",
       "description": "Prototyped NVIDIA drivers packaged as an OSTree OCI image."
     }
   ],
   "tech": [
-    { "name": "AWS", "url": "https://aws.amazon.com" },
-    { "name": "Docker", "url": "https://www.docker.com" },
-    { "name": "Kubernetes", "url": "https://kubernetes.io" },
-    { "name": "Terraform", "url": "https://developer.hashicorp.com/terraform" }
+    { "name": "AWS", "url": "https://aws.amazon.com", "description": "Amazon's cloud platform: compute, storage, queues and serverless functions." },
+    { "name": "Docker", "url": "https://www.docker.com", "logo": "docker", "description": "Packages applications and their dependencies as portable containers." },
+    { "name": "Kubernetes", "url": "https://kubernetes.io", "logo": "kubernetes", "description": "Runs and scales containers across clusters of machines." },
+    { "name": "Terraform", "url": "https://developer.hashicorp.com/terraform", "logo": "terraform", "description": "Infrastructure as code: declares cloud resources and provisions them." }
   ],
   "frameworks": [
-    { "name": "Qt", "url": "https://www.qt.io" },
-    { "name": "Boost", "url": "https://www.boost.org" },
-    { "name": "Abseil", "url": "https://abseil.io" },
-    { "name": "SFML", "url": "https://www.sfml-dev.org" },
-    { "name": "Dear ImGui", "url": "https://github.com/ocornut/imgui" }
+    { "name": "Qt", "url": "https://www.qt.io", "logo": "qt", "description": "Cross-platform C++ framework for desktop and mobile user interfaces." },
+    { "name": "Boost", "url": "https://www.boost.org", "description": "Peer-reviewed C++ libraries, several of which became part of the standard." },
+    { "name": "Abseil", "url": "https://abseil.io", "description": "Google's open-source C++ libraries that complement the standard library." },
+    { "name": "SFML", "url": "https://www.sfml-dev.org", "logo": "sfml", "description": "Simple C++ multimedia library for windows, graphics, audio and input." },
+    { "name": "Dear ImGui", "url": "https://github.com/ocornut/imgui", "description": "Immediate-mode GUI library for C++ tools and debug interfaces." }
   ],
   "stats": [
     { "label": "Backend", "value": 0.9 },

@@ -62,11 +62,15 @@ const ignoredKey = (e: KeyboardEvent) =>
 function TetrisStage({ tetris }: { tetris: MainModule }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const game = useRef<Game | null>(null);
-  const [mode, setMode] = useState<Mode>("ready");
+  const [mode, setModeState] = useState<Mode>("ready");
   const [hud, setHud] = useState<Hud>({ score: 0, lines: 0, level: 1 });
-  // the animation loop and key handler read the latest mode through this
-  const modeRef = useRef(mode);
-  modeRef.current = mode;
+  // the animation loop and key handler read the latest mode through this ref;
+  // setMode keeps it in step with the state, without touching it in render
+  const modeRef = useRef<Mode>("ready");
+  const setMode = useCallback((next: Mode) => {
+    modeRef.current = next;
+    setModeState(next);
+  }, []);
 
   // embind objects live in wasm memory and have to be freed by hand
   useEffect(() => {
@@ -83,7 +87,7 @@ function TetrisStage({ tetris }: { tetris: MainModule }) {
       game.current = newGame(tetris);
     }
     setMode("playing");
-  }, [tetris]);
+  }, [tetris, setMode]);
 
   const act = useCallback((key: string) => {
     const g = game.current;
@@ -95,7 +99,7 @@ function TetrisStage({ tetris }: { tetris: MainModule }) {
     if (g.over) {
       setMode("over");
     }
-  }, [tetris]);
+  }, [tetris, setMode]);
 
   // One requestAnimationFrame loop does gravity and drawing. Gravity runs on
   // accumulated delta time, not on frames: every frame adds the time since
@@ -145,7 +149,7 @@ function TetrisStage({ tetris }: { tetris: MainModule }) {
     };
     frame = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [setMode]);
 
   // keyboard: the desktop controls, plus Enter to start and P/Escape to pause
   useEffect(() => {
@@ -185,7 +189,7 @@ function TetrisStage({ tetris }: { tetris: MainModule }) {
       window.removeEventListener("blur", pause);
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [tetris, act, start]);
+  }, [tetris, act, start, setMode]);
 
   return (
     <div className="tetris">
