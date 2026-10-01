@@ -21,8 +21,8 @@ export interface Demo extends Named {
   source?: string;
 }
 
-// A language, technology or framework. `logo` names a Simple Icons logo (see
-// core/logos.ts); the description is a one-liner shown on the web page.
+// A language, technology, framework or project shown as a tile on the web
+// page. `logo` is a Simple Icons name or an image path (see core/logos.ts).
 export interface Tech extends Named {
   logo?: string;
   description?: string;
@@ -45,7 +45,7 @@ export interface Resume {
   programmingLanguages: Tech[];
   // `flag` is a country code shown as a flag on the web page, e.g. "es"
   humanLanguages: { name: string; level: string; flag?: string }[];
-  openSource: (Named & { description: string })[];
+  openSource: (Tech & { description: string })[];
   tech: Tech[];
   frameworks: Tech[];
   stats: { label: string; value: number }[];

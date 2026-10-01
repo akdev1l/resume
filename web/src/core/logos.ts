@@ -1,11 +1,13 @@
-// Technology logos from Simple Icons (CC0), looked up by the `logo` field in
-// resume.json. Only the icons listed here end up in the bundle; add one by
-// importing it from simple-icons and mapping its slug.
+// Logos for the `logo` field in resume.json: either a Simple Icons (CC0) name
+// from the list below, or the path of an image under public/ (starting with
+// "/") for logos Simple Icons doesn't have. Only the icons listed here end up
+// in the bundle; add one by importing it from simple-icons and mapping it.
 import {
   siC,
   siCplusplus,
   siDocker,
   siKubernetes,
+  siNeovim,
   siOpenjdk,
   siPython,
   siQt,
@@ -20,6 +22,7 @@ const ICONS = {
   cplusplus: siCplusplus,
   docker: siDocker,
   kubernetes: siKubernetes,
+  neovim: siNeovim,
   openjdk: siOpenjdk,
   python: siPython,
   qt: siQt,
@@ -44,6 +47,9 @@ const SURFACES = { light: "#ffffff", dark: "#181c25" };
 // below this a logo reads as a smudge; logos are paired with their name, so
 // the bar is lower than the 3:1 asked of essential graphics
 const MIN_CONTRAST = 2;
+
+// A logo that is an image file rather than a Simple Icons name.
+export const isLogoImage = (logo?: string): logo is string => !!logo?.startsWith("/");
 
 export function findLogo(slug?: string): Logo | undefined {
   const icon = slug ? ICONS[slug as keyof typeof ICONS] : undefined;

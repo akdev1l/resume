@@ -1,11 +1,11 @@
 import type { CSSProperties } from "react";
 
-import { findLogo, monogram } from "../../core/logos";
+import { findLogo, isLogoImage, monogram } from "../../core/logos";
 import type { Tech } from "../../core/resume";
 import "./tech-tiles.css";
 
-// A grid of technologies: logo, name and a one-line description, each tile
-// linking to the technology's site.
+// A grid of technologies or projects: logo, name and a one-line
+// description, each tile linking to its site.
 export function TechTiles({ items }: { items: Tech[] }) {
   return (
     <ul className="tech-tiles">
@@ -38,6 +38,13 @@ function TechTile({ item }: { item: Tech }) {
 }
 
 function TechLogo({ item }: { item: Tech }) {
+  if (isLogoImage(item.logo)) {
+    return (
+      <span className="tech-logo" aria-hidden="true">
+        <img src={item.logo} alt="" />
+      </span>
+    );
+  }
   const logo = findLogo(item.logo);
   if (!logo) {
     return (

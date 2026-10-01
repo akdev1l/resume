@@ -66,15 +66,7 @@ const CONTENT: Record<SectionId, (resume: Resume) => ReactNode> = {
     </div>
   ),
 
-  "open-source": (resume) => (
-    <ul>
-      {resume.openSource.map((p) => (
-        <li key={p.name}>
-          <NamedLink item={p} />: {p.description}
-        </li>
-      ))}
-    </ul>
-  ),
+  "open-source": (resume) => <TechTiles items={resume.openSource} />,
 
   skills: (resume) => (
     <>

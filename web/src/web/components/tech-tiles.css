@@ -54,7 +54,8 @@ a.tech-tile:focus-visible {
     height: 2rem;
     color: var(--logo-light, var(--tech-text));
 }
-.tech-logo svg {
+.tech-logo svg,
+.tech-logo img {
     width: 1.75rem;
     height: 1.75rem;
 }
