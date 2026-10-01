@@ -84,11 +84,13 @@
     {
       "name": "neovim",
       "url": "https://github.com/neovim/neovim/pull/34728",
+      "logo": "neovim",
       "description": "Added static build support, closing an 8-year-old feature request."
     },
     {
       "name": "Universal Blue",
       "url": "https://github.com/ublue-os/main",
+      "logo": "/logos/universal-blue.webp",
       "description": "Prototyped NVIDIA drivers packaged as an OSTree OCI image."
     }
   ],
