@@ -13,9 +13,17 @@ const serveResumeData = (): Plugin => ({
   name: "serve-resume-data",
   apply: "serve",
   configureServer(server) {
-    server.middlewares.use("/resume.json", async (_req, res) => {
-      res.setHeader("Content-Type", "application/json");
-      res.end(await readFile(resumeData));
+    server.middlewares.use("/resume.json", (_req, res) => {
+      readFile(resumeData).then(
+        (data) => {
+          res.setHeader("Content-Type", "application/json");
+          res.end(data);
+        },
+        (error: unknown) => {
+          res.statusCode = 500;
+          res.end(`reading ${resumeData} failed: ${String(error)}`);
+        },
+      );
     });
   },
 });

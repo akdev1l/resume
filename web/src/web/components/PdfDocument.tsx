@@ -9,24 +9,27 @@ type State =
   | { status: "error" }
   | { status: "ready"; pages: PDFPageProxy[] };
 
+// a finished load and the url it was for
+type Result = Exclude<State, { status: "loading" }> & { url: string };
+
 interface PdfDocumentProps {
   url: string;
 }
 
 export function PdfDocument({ url }: PdfDocumentProps) {
-  const [state, setState] = useState<State>({ status: "loading" });
+  const [result, setResult] = useState<Result | null>(null);
+  // a result for another url is stale: the new one is still loading
+  const state: State = result?.url === url ? result : { status: "loading" };
 
   useEffect(() => {
-    setState({ status: "loading" });
-
     let cancelled = false;
     const task = openDocument(url);
     task.promise.then(
-      (pages) => !cancelled && setState({ status: "ready", pages }),
+      (pages) => !cancelled && setResult({ url, status: "ready", pages }),
       (error: unknown) => {
         if (!cancelled) {
           console.error(`loading ${url} failed`, error);
-          setState({ status: "error" });
+          setResult({ url, status: "error" });
         }
       },
     );

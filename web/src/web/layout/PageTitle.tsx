@@ -1,7 +1,6 @@
-import { createContext, useContext } from "react";
+import { useContext } from "react";
 
-// The owner's name, set once by the Layout so pages only name themselves.
-export const SiteNameContext = createContext("");
+import { SiteNameContext } from "./site-name";
 
 // Sets the document title to "<name> - <title>". React 19 moves a <title>
 // rendered anywhere into <head>; render one PageTitle per page.

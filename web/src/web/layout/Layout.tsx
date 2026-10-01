@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { fullName, type Resume } from "../../core/resume";
 import { Footer } from "./Footer";
-import { SiteNameContext } from "./PageTitle";
+import { SiteNameContext } from "./site-name";
 import { SideNav } from "./SideNav";
 import { TopBar } from "./TopBar";
 import "./layout.css";
