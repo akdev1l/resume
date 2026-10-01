@@ -82,7 +82,7 @@
   ],
   "openSource": [
     {
-      "name": "neovim",
+      "name": "Neovim",
       "url": "https://github.com/neovim/neovim/pull/34728",
       "logo": "neovim",
       "description": "Added static build support, closing an 8-year-old feature request."
