@@ -21,7 +21,7 @@ export function PdfPage({ page }: PdfPageProps) {
 
   return (
     <article className="pdf-page">
-      <canvas ref={canvas} aria-label={`Page ${page.pageNumber}`} />
+      <canvas ref={canvas} role="img" aria-label={`Page ${page.pageNumber}`} />
     </article>
   );
 }
