@@ -105,7 +105,7 @@
     { "name": "Boost", "url": "https://www.boost.org", "logo": "/logos/boost.webp", "description": "Peer-reviewed C++ libraries, several of which became part of the standard." },
     { "name": "Abseil", "url": "https://abseil.io", "logo": "/logos/abseil.svg", "description": "Google's open-source C++ libraries that complement the standard library." },
     { "name": "SFML", "url": "https://www.sfml-dev.org", "logo": "sfml", "description": "Simple C++ multimedia library for windows, graphics, audio and input." },
-    { "name": "Dear ImGui", "url": "https://github.com/ocornut/imgui", "description": "Immediate-mode GUI library for C++ tools and debug interfaces." }
+    { "name": "Dear ImGui", "url": "https://github.com/ocornut/imgui", "logo": "/logos/dear-imgui.webp", "description": "Immediate-mode GUI library for C++ tools and debug interfaces." }
   ],
   "stats": [
     { "label": "Backend", "value": 0.9 },
