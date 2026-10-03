@@ -13,6 +13,16 @@ const DEMOS: Record<string, { component: ComponentType; controls?: string }> = {
     component: lazy(() => import("../components/TetrisGame").then((m) => ({ default: m.TetrisGame }))),
     controls: "← → move · ↑ or X rotate · Z rotate back · ↓ soft drop · Space hard drop · P pause",
   },
+  "3dboot": {
+    component: lazy(() => import("../components/BootSplashDemo").then((m) => ({ default: m.BootSplashDemo }))),
+    controls: "Drag to orbit · scroll to zoom · Space pause · + / − speed · R reset (click the canvas first)",
+  },
+  webmface64: {
+    component: lazy(() => import("../components/FaceStretchDemo").then((m) => ({ default: m.FaceStretchDemo }))),
+    controls:
+      "Drag the face to stretch it · drag the background to turn the head · scroll to zoom · " +
+      "camera: the head mirrors your expressions (video stays on your device)",
+  },
 };
 
 export function DemoPage({ demos }: { demos: Demo[] }) {
