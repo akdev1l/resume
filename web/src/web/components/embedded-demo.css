@@ -1,0 +1,9 @@
+.embedded-demo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    max-height: 80vh;
+    border: 0;
+    border-radius: var(--pico-border-radius);
+    background-color: #1d3f9a;
+}

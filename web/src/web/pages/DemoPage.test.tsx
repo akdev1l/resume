@@ -8,6 +8,7 @@ import { DemoPage } from "./DemoPage";
 
 // the game itself has its own tests
 vi.mock("../components/TetrisGame", () => ({ TetrisGame: () => <p>tetris game</p> }));
+vi.mock("../components/FaceStretchDemo", () => ({ FaceStretchDemo: () => <p>face demo</p> }));
 
 const renderDemo = (path: string, demos: Demo[] = resume.demos) =>
   renderAt(
@@ -35,6 +36,15 @@ describe("DemoPage", () => {
 
     expect(await screen.findByText("tetris game")).toBeInTheDocument();
     expect(screen.getByText(/Space hard drop/)).toBeInTheDocument();
+  });
+
+  it("embeds the stretchy face demo with its controls listed", async () => {
+    renderDemo("/demo/webmface64", [
+      { id: "webmface64", name: "Stretchy face", description: "Pull a face.", stack: ["TypeScript"] },
+    ]);
+
+    expect(await screen.findByText("face demo")).toBeInTheDocument();
+    expect(screen.getByText(/Drag the face to stretch it/)).toBeInTheDocument();
   });
 
   it("says when there is no such demo", () => {
