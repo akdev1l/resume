@@ -1,7 +1,6 @@
 .embedded-demo {
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 10;
     max-height: 80vh;
     border: 0;
     border-radius: var(--pico-border-radius);

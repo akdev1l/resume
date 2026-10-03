@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { EmbeddedDemo } from "./EmbeddedDemo";
+import { BootSplashDemo } from "./BootSplashDemo";
 import { FaceStretchDemo } from "./FaceStretchDemo";
 
 describe("EmbeddedDemo", () => {
@@ -12,6 +13,24 @@ describe("EmbeddedDemo", () => {
     expect(frame.tagName).toBe("IFRAME");
     expect(frame).toHaveAttribute("src", "/demos/x/index.html");
     expect(frame).toHaveAttribute("allow", "camera");
+    expect(frame.style.aspectRatio).toBe("16 / 10");
+  });
+
+  it("takes the demo's aspect ratio", () => {
+    render(<EmbeddedDemo src="/demos/y/index.html" title="Y demo" aspectRatio="4 / 3" />);
+
+    expect(screen.getByTitle("Y demo").style.aspectRatio).toBe("4 / 3");
+  });
+});
+
+describe("BootSplashDemo", () => {
+  it("embeds the 3dboot web viewer at 4:3 without extra permissions", () => {
+    render(<BootSplashDemo />);
+
+    const frame = screen.getByTitle("3D boot splash renderer demo");
+    expect(frame).toHaveAttribute("src", "/demos/3dboot/index.html");
+    expect(frame).not.toHaveAttribute("allow");
+    expect(frame.style.aspectRatio).toBe("4 / 3");
   });
 });
 

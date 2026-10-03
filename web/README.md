@@ -58,6 +58,21 @@ The build is ~27 MB, mostly the MediaPipe WebAssembly runtime and face model. Th
 head model is Nintendo's (see `public/demos/webmface64/NOTICE.md`); leave out
 `BUNDLE_MODELS`/`EMBED_MODEL` to ship the original procedural head instead.
 
+## 3D boot splash demo
+
+`public/demos/3dboot/` is the plymouth-3dboot web viewer (Rust compiled to WebAssembly
+with Emscripten and SDL3), embedded on `/demo/3dboot` in an iframe
+(`src/web/components/BootSplashDemo.tsx`). To update it, build there and copy the output
+over:
+
+```
+scripts/dev.sh just viewer-web                       # in the 3dboot repo
+cp target/web/{index.html,plymouth-3dboot-viewer.js,plymouth_3dboot_viewer.wasm} \
+   <resume>/web/public/demos/3dboot/
+```
+
+Update `public/demos/3dboot/NOTICE.md` with the commit it was built from.
+
 ## layout
 
 ```

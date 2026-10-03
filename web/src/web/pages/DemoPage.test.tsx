@@ -9,6 +9,7 @@ import { DemoPage } from "./DemoPage";
 // the game itself has its own tests
 vi.mock("../components/TetrisGame", () => ({ TetrisGame: () => <p>tetris game</p> }));
 vi.mock("../components/FaceStretchDemo", () => ({ FaceStretchDemo: () => <p>face demo</p> }));
+vi.mock("../components/BootSplashDemo", () => ({ BootSplashDemo: () => <p>boot splash demo</p> }));
 
 const renderDemo = (path: string, demos: Demo[] = resume.demos) =>
   renderAt(
@@ -45,6 +46,15 @@ describe("DemoPage", () => {
 
     expect(await screen.findByText("face demo")).toBeInTheDocument();
     expect(screen.getByText(/Drag the face to stretch it/)).toBeInTheDocument();
+  });
+
+  it("runs the 3D boot splash renderer with its controls listed", async () => {
+    renderDemo("/demo/3dboot", [
+      { id: "3dboot", name: "3D boot splash", description: "Spins a logo.", stack: ["Rust"] },
+    ]);
+
+    expect(await screen.findByText("boot splash demo")).toBeInTheDocument();
+    expect(screen.getByText(/Drag to orbit/)).toBeInTheDocument();
   });
 
   it("says when there is no such demo", () => {
