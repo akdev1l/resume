@@ -189,6 +189,18 @@
       "name": "Tetris",
       "description": "The C++20 Tetris clone compiled to WebAssembly: the same unit-tested game library as the desktop build, with SRS wall kicks and a 7-bag randomizer, rendered in the browser.",
       "stack": ["C++20", "WebAssembly", "TypeScript"]
+    },
+    {
+      "id": "webmface64",
+      "name": "Stretchy face",
+      "description": "A browser take on a classic N64 title-screen toy: grab a 3D head, stretch it, and watch it wobble back with spring physics. Turn on the camera and it mirrors your expressions and head movements, tracked on-device with MediaPipe.",
+      "stack": ["TypeScript", "Three.js", "WebGL", "MediaPipe"]
+    },
+    {
+      "id": "3dboot",
+      "name": "3D boot splash renderer",
+      "description": "plymouth-3dboot: a CPU rasterizer in Rust, with no unsafe code, that loads OBJ and COLLADA models and renders animated 3D boot splashes for Plymouth. The same library runs here as WebAssembly through Emscripten and SDL3, drawing the spinning N64 logo pixel for pixel like the native build.",
+      "stack": ["Rust", "WebAssembly", "Emscripten", "SDL3"]
     }
   ],
   "projects": [
