@@ -206,6 +206,12 @@
   "projects": [
     {
       "date": "2026",
+      "name": "Pasta",
+      "stack": ["Java", "Quarkus", "Go", "React", "AWS CDK"],
+      "description": "Paste service that runs snippets in eight languages in sandboxes (Podman or one-shot AWS Lambda) driven by a Go executor; deployed with CDK on ECS behind CloudFront and WAF."
+    },
+    {
+      "date": "2026",
       "name": "Tetris",
       "stack": ["C++20", "SFML"],
       "description": "Tetris clone with the game logic in a standalone, unit-tested library and an SFML front end. Game state is immutable and deterministic from a seed, with SRS wall kicks and a 7-bag randomizer."
