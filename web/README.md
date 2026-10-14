@@ -8,6 +8,13 @@ build uses (`../src/resume.json`). Pages are routed with React Router:
 GitHub Pages can't rewrite those paths, so the build also writes `404.html`, a
 copy of `index.html` that boots the app for any path.
 
+In the `Containerfile.builder` environment (Node 24, pnpm), from the repo root:
+
+```
+podman build -f Containerfile.builder -t localhost/resume-builder .
+podman run --rm -it -v "$PWD:/resume:z" -w /resume/web localhost/resume-builder bash
+```
+
 ```
 pnpm install
 pnpm dev        # serves ../src/resume.json as /resume.json
