@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#14161c">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>BlockBlast</title>
+  <link rel="icon" href="data:,">
+  <style>
+    /* Same colour as color::BACKGROUND. The e2e background-pixel check
+       relies on the GL context being opaque (alpha: false), not on this. */
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior: none;
+      background: #14161c;
+    }
+    /* The platform layer assumes the canvas covers the viewport at (0, 0). */
+    #canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      display: block;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Measured by blockblastSafeArea() in loader.js: its padding resolves
+       the env() safe-area insets to pixels. */
+    #safe-area {
+      position: fixed;
+      visibility: hidden;
+      pointer-events: none;
+      padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+        env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+  <div id="safe-area"></div>
+  <script src="loader.js"></script>
+  <script src="blockblast-web.js" async></script>
+</body>
+</html>

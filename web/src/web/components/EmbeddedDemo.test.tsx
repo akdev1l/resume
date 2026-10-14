@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { EmbeddedDemo } from "./EmbeddedDemo";
+import { BlastBallDemo } from "./BlastBallDemo";
+import { BlockBlastDemo } from "./BlockBlastDemo";
 import { BootSplashDemo } from "./BootSplashDemo";
 import { FaceStretchDemo } from "./FaceStretchDemo";
 
@@ -41,5 +43,25 @@ describe("FaceStretchDemo", () => {
     const frame = screen.getByTitle("Stretchy face demo");
     expect(frame).toHaveAttribute("src", "/demos/webmface64/index.html");
     expect(frame.getAttribute("allow")).toContain("camera");
+  });
+});
+
+describe("BlastBallDemo", () => {
+  it("embeds the BlastBall Web export at 16:9", () => {
+    render(<BlastBallDemo />);
+
+    const frame = screen.getByTitle("BlastBall game");
+    expect(frame).toHaveAttribute("src", "/demos/blastball/index.html");
+    expect(frame.style.aspectRatio).toBe("16 / 9");
+  });
+});
+
+describe("BlockBlastDemo", () => {
+  it("embeds the BlockBlast build at 3:4", () => {
+    render(<BlockBlastDemo />);
+
+    const frame = screen.getByTitle("BlockBlast game");
+    expect(frame).toHaveAttribute("src", "/demos/blockblast/index.html");
+    expect(frame.style.aspectRatio).toBe("3 / 4");
   });
 });

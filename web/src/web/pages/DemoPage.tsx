@@ -23,6 +23,14 @@ const DEMOS: Record<string, { component: ComponentType; controls?: string }> = {
       "Drag the face to stretch it · drag the background to turn the head · scroll to zoom · " +
       "camera: the head mirrors your expressions (video stays on your device)",
   },
+  blastball: {
+    component: lazy(() => import("../components/BlastBallDemo").then((m) => ({ default: m.BlastBallDemo }))),
+    controls: "Point at a shape to aim · click or tap to fire · knock every shape off the platform",
+  },
+  blockblast: {
+    component: lazy(() => import("../components/BlockBlastDemo").then((m) => ({ default: m.BlockBlastDemo }))),
+    controls: "Drag a piece from the tray onto the board · fill a row or column to clear it",
+  },
 };
 
 export function DemoPage({ demos }: { demos: Demo[] }) {

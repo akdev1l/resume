@@ -80,6 +80,33 @@ cp target/web/{index.html,plymouth-3dboot-viewer.js,plymouth_3dboot_viewer.wasm}
 
 Update `public/demos/3dboot/NOTICE.md` with the commit it was built from.
 
+## BlastBall demo
+
+`public/demos/blastball/` is the Web export of the BlastBall Godot game, embedded on
+`/demo/blastball` in an iframe (`src/web/components/BlastBallDemo.tsx`). To update it,
+export there and copy the output over:
+
+```
+./dev.sh export-web                                  # in the BlastBall repo
+rm -rf <resume>/web/public/demos/blastball/index.*
+cp build/web/* <resume>/web/public/demos/blastball/
+```
+
+Update `public/demos/blastball/NOTICE.md` with the commit it was built from.
+
+## BlockBlast demo
+
+`public/demos/blockblast/` is the BlockBlast web build (Rust, Emscripten, WebGL2),
+embedded on `/demo/blockblast` in an iframe (`src/web/components/BlockBlastDemo.tsx`).
+To update it, build there and copy the output over:
+
+```
+scripts/dev.sh dist                                  # in the BlockBlast repo
+cp dist/* <resume>/web/public/demos/blockblast/
+```
+
+Update `public/demos/blockblast/NOTICE.md` with the commit it was built from.
+
 ## layout
 
 ```
