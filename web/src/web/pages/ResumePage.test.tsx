@@ -43,10 +43,11 @@ describe("ResumePage", () => {
     expect(within(section("projects")).getByText("Analytical Engine")).toBeInTheDocument();
   });
 
-  it("shows demos as cards and technologies and projects as tiles", () => {
+  it("shows demos as cards in a carousel and technologies and projects as tiles", () => {
     renderAt(<ResumePage resume={resume} />);
 
-    expect(within(section("demos")).getAllByRole("button", { name: "Try the demo" })).toHaveLength(resume.demos.length);
+    const demos = within(section("demos")).getByRole("region", { name: "Demos" });
+    expect(within(demos).getAllByRole("button", { name: "Try the demo" })).toHaveLength(resume.demos.length);
     expect(within(section("open-source")).getByRole("link", { name: /Engine/ })).toBeInTheDocument();
     const skills = within(section("skills"));
     expect(skills.getByRole("link", { name: /Python/ })).toBeInTheDocument();
