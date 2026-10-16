@@ -13,9 +13,11 @@ export interface Named {
 }
 
 // A tech demo. With an `id` it runs on this site at #/demo/<id>; otherwise
-// `url` points to wherever it is hosted. `source` links to its code.
+// `url` points to wherever it is hosted. `source` links to its code. `logo` is
+// shown on its card, like a Tech's (see core/logos.ts).
 export interface Demo extends Named {
   id?: string;
+  logo?: string;
   description: string;
   stack: string[];
   source?: string;

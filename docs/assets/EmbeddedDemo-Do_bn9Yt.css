@@ -1,0 +1,1 @@
+.embedded-demo{width:100%;max-height:80vh;max-width:calc(80vh * var(--demo-aspect,16 / 10));border-radius:var(--pico-border-radius);background-color:#1d3f9a;border:0;margin-inline:auto;display:block}

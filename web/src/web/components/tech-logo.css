@@ -1,0 +1,37 @@
+/* logos keep their brand colour unless it would vanish into the card's
+   background in that theme (see core/logos.ts); then they use the text colour */
+.tech-logo {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--logo-light, var(--tech-text, var(--pico-color)));
+}
+.tech-logo svg,
+.tech-logo img {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+/* softens the corners of logos that are opaque squares */
+.tech-logo img {
+    border-radius: 0.25rem;
+}
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .tech-logo {
+        color: var(--logo-dark, var(--tech-text, var(--pico-color)));
+    }
+}
+[data-theme="dark"] .tech-logo {
+    color: var(--logo-dark, var(--tech-text, var(--pico-color)));
+}
+
+/* stand-in for technologies without a logo */
+.tech-logo.tech-monogram {
+    border-radius: 0.4rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--tech-muted, var(--pico-muted-color));
+    background-color: var(--pico-muted-border-color);
+}

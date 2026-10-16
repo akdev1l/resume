@@ -10,6 +10,8 @@ import { DemoPage } from "./DemoPage";
 vi.mock("../components/TetrisGame", () => ({ TetrisGame: () => <p>tetris game</p> }));
 vi.mock("../components/FaceStretchDemo", () => ({ FaceStretchDemo: () => <p>face demo</p> }));
 vi.mock("../components/BootSplashDemo", () => ({ BootSplashDemo: () => <p>boot splash demo</p> }));
+vi.mock("../components/BlastBallDemo", () => ({ BlastBallDemo: () => <p>blastball game</p> }));
+vi.mock("../components/BlockBlastDemo", () => ({ BlockBlastDemo: () => <p>blockblast game</p> }));
 
 const renderDemo = (path: string, demos: Demo[] = resume.demos) =>
   renderAt(
@@ -55,6 +57,20 @@ describe("DemoPage", () => {
 
     expect(await screen.findByText("boot splash demo")).toBeInTheDocument();
     expect(screen.getByText(/Drag to orbit/)).toBeInTheDocument();
+  });
+
+  it("embeds BlastBall with its controls listed", async () => {
+    renderDemo("/demo/blastball", [{ id: "blastball", name: "BlastBall", description: "Cannon.", stack: ["Godot"] }]);
+
+    expect(await screen.findByText("blastball game")).toBeInTheDocument();
+    expect(screen.getByText(/click or tap to fire/)).toBeInTheDocument();
+  });
+
+  it("embeds BlockBlast with its controls listed", async () => {
+    renderDemo("/demo/blockblast", [{ id: "blockblast", name: "BlockBlast", description: "Blocks.", stack: ["Rust"] }]);
+
+    expect(await screen.findByText("blockblast game")).toBeInTheDocument();
+    expect(screen.getByText(/Drag a piece from the tray/)).toBeInTheDocument();
   });
 
   it("says when there is no such demo", () => {

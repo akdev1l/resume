@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 
 import { githubUser, type Resume } from "../../core/resume";
 import { SECTIONS, type SectionId } from "../../core/sections";
+import { Carousel } from "../components/Carousel";
 import { DemoCard } from "../components/DemoCard";
 import { Entry } from "../components/Entry";
 import { Flag } from "../components/Flag";
@@ -59,11 +60,10 @@ const CONTENT: Record<SectionId, (resume: Resume) => ReactNode> = {
     )),
 
   demos: (resume) => (
-    <div className="demo-grid">
-      {resume.demos.map((demo) => (
-        <DemoCard key={demo.name} demo={demo} />
-      ))}
-    </div>
+    <Carousel
+      label="Demos"
+      items={resume.demos.map((demo) => ({ key: demo.name, content: <DemoCard demo={demo} /> }))}
+    />
   ),
 
   "open-source": (resume) => <TechTiles items={resume.openSource} />,

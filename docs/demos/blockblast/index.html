@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#14161c">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="blockblast-build" content="4b770dff6f101973">
+  <title>BlockBlast</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    /* Same colour as color::BACKGROUND. The e2e background-pixel check
+       relies on the GL context being opaque (alpha: false), not on this. */
+    /* No scrolling, pull-to-refresh, double-tap zoom, text selection or
+       long-press callouts anywhere on the page, not only on the canvas. */
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      background: #14161c;
+    }
+    /* The platform layer assumes the canvas covers the viewport at (0, 0). */
+    #canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      display: block;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Measured by blockblast_safe_area() in the platform's bridge.js: its
+       padding resolves the env() safe-area insets to pixels. */
+    #safe-area {
+      position: fixed;
+      visibility: hidden;
+      pointer-events: none;
+      padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+        env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    }
+    /* Shown by blockblast_show_notice() when nothing can be drawn. */
+    #notice {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+      font: 600 18px/1.4 system-ui, sans-serif;
+      color: #ffffff;
+      background: #14161c;
+    }
+    #notice[hidden] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <div id="safe-area"></div>
+  <div id="notice" role="alert" hidden></div>
+  <script src="loader.js"></script>
+  <!-- `just build-web` replaces 4b770dff6f101973 (here and in the meta tag)
+       with the build's version, which is also in the bundle's file names. -->
+  <script src="blockblast-web.4b770dff6f101973.js" async></script>
+</body>
+</html>

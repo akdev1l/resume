@@ -8,6 +8,13 @@ build uses (`../src/resume.json`). Pages are routed with React Router:
 GitHub Pages can't rewrite those paths, so the build also writes `404.html`, a
 copy of `index.html` that boots the app for any path.
 
+In the `Containerfile.builder` environment (Node 24, pnpm), from the repo root:
+
+```
+podman build -f Containerfile.builder -t localhost/resume-builder .
+podman run --rm -it -v "$PWD:/resume:z" -w /resume/web localhost/resume-builder bash
+```
+
 ```
 pnpm install
 pnpm dev        # serves ../src/resume.json as /resume.json
@@ -72,6 +79,42 @@ cp target/web/{index.html,plymouth-3dboot-viewer.js,plymouth_3dboot_viewer.wasm}
 ```
 
 Update `public/demos/3dboot/NOTICE.md` with the commit it was built from.
+
+## BlastBall demo
+
+`public/demos/blastball/` is the Web export of the BlastBall Godot game, embedded on
+`/demo/blastball` in an iframe (`src/web/components/BlastBallDemo.tsx`). To update it,
+export there and copy the output over:
+
+```
+./dev.sh export-web                                  # in the BlastBall repo
+rm -rf <resume>/web/public/demos/blastball/index.*
+cp build/web/* <resume>/web/public/demos/blastball/
+cd <resume>/web/public/demos/blastball
+gzip -9 -n index.wasm
+sed -i 's|^\t\t<script src="index.js"></script>$|\t\t<script src="wasm-gzip.js"></script>\n&|' index.html
+```
+
+Cloudflare Pages takes files up to 25 MiB and the Godot engine is ~38 MiB, so it ships
+gzipped: `wasm-gzip.js` (kept across updates) answers Godot's fetch of `index.wasm` with
+`index.wasm.gz`, inflated in the browser. Check that `index.html` loads it before
+`index.js`. Update `public/demos/blastball/NOTICE.md` with the commit it was built from.
+
+## BlockBlast demo
+
+`public/demos/blockblast/` is the BlockBlast web build (Rust, Emscripten, WebGL2),
+embedded on `/demo/blockblast` in an iframe (`src/web/components/BlockBlastDemo.tsx`).
+To update it, build there and copy the output over:
+
+```
+scripts/dev.sh build-web                             # in the BlockBlast repo
+find <resume>/web/public/demos/blockblast -mindepth 1 ! -name NOTICE.md -delete
+cp dist/* <resume>/web/public/demos/blockblast/
+```
+
+The build names its glue script and wasm after a hash of the build, so clear out the old
+files before copying. Update `public/demos/blockblast/NOTICE.md` with the commit and build
+version it was built from.
 
 ## layout
 

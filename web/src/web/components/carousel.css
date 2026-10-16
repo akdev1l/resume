@@ -1,0 +1,25 @@
+.carousel-track {
+    display: flex;
+    gap: var(--pico-grid-column-gap);
+    /* room for the focus ring and the scrollbar */
+    padding: 0.25rem 0.25rem 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0.25rem;
+    scrollbar-width: thin;
+}
+.carousel-track:focus-visible {
+    outline: 2px solid var(--pico-primary);
+    outline-offset: 2px;
+    border-radius: var(--pico-border-radius);
+}
+.carousel-slide {
+    display: flex;
+    flex: 0 0 min(100%, 20rem);
+    scroll-snap-align: start;
+}
+/* the item fills the slide, so every card in a row is as tall as the tallest */
+.carousel-slide > * {
+    flex: 1;
+}
