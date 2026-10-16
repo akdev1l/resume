@@ -116,6 +116,12 @@ The build names its glue script and wasm after a hash of the build, so clear out
 files before copying. Update `public/demos/blockblast/NOTICE.md` with the commit and build
 version it was built from.
 
+The copied `sw.js` needs one change. Cloudflare Pages redirects `index.html` to `./`, so the
+worker precaches `index.html` as a redirected response, and the browser refuses that as the
+answer to the iframe's navigation ("response served by service worker has redirections").
+Carry over the `unredirected()` helper from the current `sw.js`, which serves cached
+responses as fresh copies without the redirect flag.
+
 ## layout
 
 ```

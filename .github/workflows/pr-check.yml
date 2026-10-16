@@ -65,8 +65,11 @@ jobs:
           # rpkg derives the version from the commit count.
           fetch-depth: 0
 
+      # rpkg runs its spec macros (git_dir_version) with an environment
+      # holding only its own variables, so git finds no HOME and skips the
+      # global config: the checkout must be trusted in the system config.
       - name: allow rpkg to read the checkout
-        run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
+        run: git config --system --add safe.directory "${GITHUB_WORKSPACE}"
 
       - name: build rpm package
         run: |
