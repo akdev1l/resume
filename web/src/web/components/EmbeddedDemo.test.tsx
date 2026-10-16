@@ -21,7 +21,10 @@ describe("EmbeddedDemo", () => {
   it("takes the demo's aspect ratio", () => {
     render(<EmbeddedDemo src="/demos/y/index.html" title="Y demo" aspectRatio="4 / 3" />);
 
-    expect(screen.getByTitle("Y demo").style.aspectRatio).toBe("4 / 3");
+    const frame = screen.getByTitle("Y demo");
+    expect(frame.style.aspectRatio).toBe("4 / 3");
+    // so the width shrinks with max-height and the ratio holds
+    expect(frame.style.getPropertyValue("--demo-aspect")).toBe("4 / 3");
   });
 });
 
@@ -47,11 +50,12 @@ describe("FaceStretchDemo", () => {
 });
 
 describe("BlastBallDemo", () => {
-  it("embeds the BlastBall Web export at 16:9", () => {
+  it("embeds the BlastBall Web export at 16:9 and lets it use fullscreen and gamepads", () => {
     render(<BlastBallDemo />);
 
     const frame = screen.getByTitle("BlastBall game");
     expect(frame).toHaveAttribute("src", "/demos/blastball/index.html");
+    expect(frame).toHaveAttribute("allow", "fullscreen; gamepad");
     expect(frame.style.aspectRatio).toBe("16 / 9");
   });
 });

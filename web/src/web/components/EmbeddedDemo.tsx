@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import "./embedded-demo.css";
 
 // A demo that ships as its own static build under public/demos/<name>/ and runs in
@@ -13,5 +15,7 @@ export function EmbeddedDemo({
   allow?: string;
   aspectRatio?: string;
 }) {
-  return <iframe className="embedded-demo" src={src} title={title} allow={allow} style={{ aspectRatio }} />;
+  // --demo-aspect caps the width too, so the ratio holds once max-height kicks in
+  const style = { aspectRatio, "--demo-aspect": aspectRatio } as CSSProperties;
+  return <iframe className="embedded-demo" src={src} title={title} allow={allow} style={style} />;
 }
