@@ -50,6 +50,23 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// A copy of a response that followed redirects, without the redirect flag.
+// Hosts like Cloudflare Pages redirect index.html to ./, so the precached
+// index.html is a redirected response, and the browser rejects one of those
+// as the answer to a navigation ("response served by service worker has
+// redirections"). Added by the resume, not part of the BlockBlast build
+// (see web/README.md).
+function unredirected(response) {
+  if (!response.redirected) {
+    return response;
+  }
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+  });
+}
+
 // Cache first for this origin's GETs: the shell only changes with a new
 // build, which comes with a new worker. The query is ignored, so /?seed=42
 // is served by "./". Anything else goes to the network untouched.
@@ -62,6 +79,6 @@ self.addEventListener("fetch", (event) => {
     caches
       .open(CACHE)
       .then((cache) => cache.match(request, { ignoreSearch: true }))
-      .then((cached) => cached || fetch(request)),
+      .then((cached) => (cached ? unredirected(cached) : fetch(request))),
   );
 });
