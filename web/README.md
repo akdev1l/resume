@@ -90,9 +90,15 @@ export there and copy the output over:
 ./dev.sh export-web                                  # in the BlastBall repo
 rm -rf <resume>/web/public/demos/blastball/index.*
 cp build/web/* <resume>/web/public/demos/blastball/
+cd <resume>/web/public/demos/blastball
+gzip -9 -n index.wasm
+sed -i 's|^\t\t<script src="index.js"></script>$|\t\t<script src="wasm-gzip.js"></script>\n&|' index.html
 ```
 
-Update `public/demos/blastball/NOTICE.md` with the commit it was built from.
+Cloudflare Pages takes files up to 25 MiB and the Godot engine is ~38 MiB, so it ships
+gzipped: `wasm-gzip.js` (kept across updates) answers Godot's fetch of `index.wasm` with
+`index.wasm.gz`, inflated in the browser. Check that `index.html` loads it before
+`index.js`. Update `public/demos/blastball/NOTICE.md` with the commit it was built from.
 
 ## BlockBlast demo
 
