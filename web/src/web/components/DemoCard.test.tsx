@@ -18,6 +18,17 @@ describe("DemoCard", () => {
     expect(screen.getByRole("button", { name: "Source" })).toHaveAttribute("href", "https://example.com/src");
   });
 
+  it("shows the demo's logo, or its monogram without one", () => {
+    const { container, unmount } = renderAt(
+      <DemoCard demo={{ name: "Engine demo", description: "Runs Note G.", stack: [], logo: "/logos/demos/engine.svg" }} />,
+    );
+    expect(container.querySelector(".tech-logo img")).toHaveAttribute("src", "/logos/demos/engine.svg");
+    unmount();
+
+    const { container: plain } = renderAt(<DemoCard demo={{ name: "Engine demo", description: "Runs Note G.", stack: [] }} />);
+    expect(plain.querySelector(".tech-monogram")).toHaveTextContent("ED");
+  });
+
   it("links an external demo to its url", () => {
     renderAt(<DemoCard demo={{ name: "Hosted", description: "Elsewhere.", stack: [], url: "https://demo.example.com" }} />);
     expect(screen.getByRole("button", { name: "Try the demo" })).toHaveAttribute("href", "https://demo.example.com");

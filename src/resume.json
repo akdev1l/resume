@@ -186,30 +186,35 @@
   "demos": [
     {
       "id": "tetris",
+      "logo": "/logos/demos/tetris.svg",
       "name": "Tetris",
       "description": "The C++20 Tetris clone compiled to WebAssembly: the same unit-tested game library as the desktop build, with SRS wall kicks and a 7-bag randomizer, rendered in the browser.",
       "stack": ["C++20", "WebAssembly", "TypeScript"]
     },
     {
       "id": "webmface64",
+      "logo": "/logos/demos/webmface64.svg",
       "name": "Stretchy face",
       "description": "A browser take on a classic N64 title-screen toy: grab a 3D head, stretch it, and watch it wobble back with spring physics. Turn on the camera and it mirrors your expressions and head movements, tracked on-device with MediaPipe.",
       "stack": ["TypeScript", "Three.js", "WebGL", "MediaPipe"]
     },
     {
       "id": "3dboot",
+      "logo": "/logos/demos/3dboot.svg",
       "name": "3D boot splash renderer",
       "description": "plymouth-3dboot: a CPU rasterizer in Rust, with no unsafe code, that loads OBJ and COLLADA models and renders animated 3D boot splashes for Plymouth. The same library runs here as WebAssembly through Emscripten and SDL3, drawing the spinning N64 logo pixel for pixel like the native build.",
       "stack": ["Rust", "WebAssembly", "Emscripten", "SDL3"]
     },
     {
       "id": "blastball",
+      "logo": "/logos/demos/blastball.svg",
       "name": "BlastBall",
       "description": "An arcade physics game: fire cannon balls at towers, pyramids and bridges balanced on a platform and knock every shape off. Levels are generated from a seed and checked by a bot to be winnable. Built in Godot 4 with Jolt rigid-body physics and exported to WebAssembly; the game rules are a tested library separate from the presentation.",
       "stack": ["Godot", "GDScript", "Jolt Physics", "WebAssembly"]
     },
     {
       "id": "blockblast",
+      "logo": "/logos/demos/blockblast.svg",
       "name": "BlockBlast",
       "description": "A block-placement puzzle: drag pieces from a tray of three onto an 8×8 board and clear full rows and columns. The game logic is a platform-independent Rust crate; the browser front end renders with WebGL2 and Dear ImGui, compiled to WebAssembly with Emscripten, and works with mouse and touch.",
       "stack": ["Rust", "WebAssembly", "Emscripten", "WebGL2", "Dear ImGui"]
