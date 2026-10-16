@@ -101,11 +101,14 @@ embedded on `/demo/blockblast` in an iframe (`src/web/components/BlockBlastDemo.
 To update it, build there and copy the output over:
 
 ```
-scripts/dev.sh dist                                  # in the BlockBlast repo
+scripts/dev.sh build-web                             # in the BlockBlast repo
+find <resume>/web/public/demos/blockblast -mindepth 1 ! -name NOTICE.md -delete
 cp dist/* <resume>/web/public/demos/blockblast/
 ```
 
-Update `public/demos/blockblast/NOTICE.md` with the commit it was built from.
+The build names its glue script and wasm after a hash of the build, so clear out the old
+files before copying. Update `public/demos/blockblast/NOTICE.md` with the commit and build
+version it was built from.
 
 ## layout
 
