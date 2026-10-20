@@ -59,8 +59,11 @@ jobs:
       - name: check out repository code
         uses: actions/checkout@v4
 
+      # rpkg runs its spec macros with an environment holding only its own
+      # variables (no HOME), so the global config isn't read: trust the
+      # checkout in the system config.
       - name: trust the workspace for git inside the container
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+        run: git config --system --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: build rpm package
         run: |

@@ -1,1 +1,0 @@
-import{n as e}from"./index-CVKhOHY_.js";import{t}from"./EmbeddedDemo-C7J2rcpU.js";var n=e();function r(){return(0,n.jsx)(t,{src:`/demos/blastball/index.html`,title:`BlastBall game`,aspectRatio:`16 / 9`,allow:`fullscreen; gamepad`})}export{r as BlastBallDemo};

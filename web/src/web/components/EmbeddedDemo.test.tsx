@@ -61,11 +61,12 @@ describe("BlastBallDemo", () => {
 });
 
 describe("BlockBlastDemo", () => {
-  it("embeds the BlockBlast build at 3:4", () => {
+  it("embeds the BlockBlast build at 3:4 and lets it go fullscreen", () => {
     render(<BlockBlastDemo />);
 
     const frame = screen.getByTitle("BlockBlast game");
     expect(frame).toHaveAttribute("src", "/demos/blockblast/index.html");
     expect(frame.style.aspectRatio).toBe("3 / 4");
+    expect(frame).toHaveAttribute("allow", "fullscreen");
   });
 });
