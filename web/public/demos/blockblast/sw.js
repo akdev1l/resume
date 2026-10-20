@@ -1,6 +1,6 @@
 // Service worker: caches the app shell so the game plays offline.
 //
-// `just build-web` (scripts/stamp-build.py) replaces 4b770dff6f101973 with a
+// `just build-web` (scripts/stamp-build.py) replaces dad914560d046783 with a
 // hash of the shell, and puts the same version in the names of the glue
 // script and the wasm. Every build that changes the shell therefore gets a
 // byte-different worker, which the browser installs: it precaches the new
@@ -8,13 +8,13 @@
 "use strict";
 
 const CACHE_PREFIX = "blockblast-";
-const CACHE = `${CACHE_PREFIX}4b770dff6f101973`;
+const CACHE = `${CACHE_PREFIX}dad914560d046783`;
 const SHELL = [
   "./",
   "index.html",
   "loader.js",
-  "blockblast-web.4b770dff6f101973.js",
-  "blockblast_web.4b770dff6f101973.wasm",
+  "blockblast-web.dad914560d046783.js",
+  "blockblast_web.dad914560d046783.wasm",
   "manifest.webmanifest",
   "icon-192.png",
   "icon-512.png",
