@@ -1,1 +1,0 @@
-import{n as e}from"./index-CVKhOHY_.js";var t=e();function n({src:e,title:n,allow:r,aspectRatio:i=`16 / 10`}){return(0,t.jsx)(`iframe`,{className:`embedded-demo`,src:e,title:n,allow:r,style:{aspectRatio:i,"--demo-aspect":i}})}export{n as t};
