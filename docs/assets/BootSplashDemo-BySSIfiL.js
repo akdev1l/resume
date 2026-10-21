@@ -1,1 +1,0 @@
-import{n as e}from"./index-B-39D3Z7.js";import{t}from"./EmbeddedDemo-cJtC2OtK.js";var n=e();function r(){return(0,n.jsx)(t,{src:`/demos/3dboot/index.html`,title:`3D boot splash renderer demo`,aspectRatio:`4 / 3`})}export{r as BootSplashDemo};

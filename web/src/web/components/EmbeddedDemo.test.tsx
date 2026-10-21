@@ -6,6 +6,7 @@ import { BlastBallDemo } from "./BlastBallDemo";
 import { BlockBlastDemo } from "./BlockBlastDemo";
 import { BootSplashDemo } from "./BootSplashDemo";
 import { FaceStretchDemo } from "./FaceStretchDemo";
+import { SPLATBOX_URL, SplatboxDemo } from "./SplatboxDemo";
 
 describe("EmbeddedDemo", () => {
   it("runs a static demo build in a titled iframe", () => {
@@ -68,5 +69,17 @@ describe("BlockBlastDemo", () => {
     expect(frame).toHaveAttribute("src", "/demos/blockblast/index.html");
     expect(frame.style.aspectRatio).toBe("3 / 4");
     expect(frame).toHaveAttribute("allow", "fullscreen");
+  });
+});
+
+describe("SplatboxDemo", () => {
+  it("frames the live Splatbox site at 16:9 and links to it", () => {
+    render(<SplatboxDemo />);
+
+    const frame = screen.getByTitle("Splatbox game");
+    expect(frame).toHaveAttribute("src", SPLATBOX_URL);
+    expect(frame).toHaveAttribute("allow", "fullscreen; gamepad; autoplay");
+    expect(frame.style.aspectRatio).toBe("16 / 9");
+    expect(screen.getByRole("link", { name: "splatbox.alexdiaz.fyi" })).toHaveAttribute("href", SPLATBOX_URL);
   });
 });

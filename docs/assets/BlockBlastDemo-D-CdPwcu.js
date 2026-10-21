@@ -1,0 +1,1 @@
+import{n as e}from"./index-C6yTu5dK.js";import{t}from"./EmbeddedDemo-BlF5JG1Q.js";var n=e();function r(){return(0,n.jsx)(t,{src:`/demos/blockblast/index.html`,title:`BlockBlast game`,aspectRatio:`3 / 4`,allow:`fullscreen`})}export{r as BlockBlastDemo};

@@ -1,0 +1,1 @@
+import{n as e}from"./index-C6yTu5dK.js";import{t}from"./EmbeddedDemo-BlF5JG1Q.js";var n=e();function r(){return(0,n.jsx)(t,{src:`/demos/webmface64/index.html`,title:`Stretchy face demo`,allow:`camera; autoplay; fullscreen`})}export{r as FaceStretchDemo};
