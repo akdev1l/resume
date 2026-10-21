@@ -31,6 +31,12 @@ const DEMOS: Record<string, { component: ComponentType; controls?: string }> = {
     component: lazy(() => import("../components/BlockBlastDemo").then((m) => ({ default: m.BlockBlastDemo }))),
     controls: "Drag a piece from the tray onto the board · fill a row or column to clear it",
   },
+  splatbox: {
+    component: lazy(() => import("../components/SplatboxDemo").then((m) => ({ default: m.SplatboxDemo }))),
+    controls:
+      "Click to play · WASD move · Shift sprint · Space jump · click shoot · R reload · " +
+      "1–5 weapon · C paint color · Esc menu",
+  },
 };
 
 export function DemoPage({ demos }: { demos: Demo[] }) {

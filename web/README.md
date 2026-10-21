@@ -122,6 +122,14 @@ answer to the iframe's navigation ("response served by service worker has redire
 Carry over the `unredirected()` helper from the current `sw.js`, which serves cached
 responses as fresh copies without the redirect flag.
 
+## Splatbox demo
+
+Splatbox is the one demo with no build under `public/demos/`: its multiplayer matchmaking
+needs the Cloudflare Worker and Durable Objects it is deployed with, so
+`/demo/splatbox` frames the live site, https://splatbox.alexdiaz.fyi/
+(`src/web/components/SplatboxDemo.tsx`), and links to it in case the frame can't load.
+Nothing to update here when Splatbox changes; if it moves, change `SPLATBOX_URL`.
+
 ## layout
 
 ```

@@ -12,6 +12,7 @@ vi.mock("../components/FaceStretchDemo", () => ({ FaceStretchDemo: () => <p>face
 vi.mock("../components/BootSplashDemo", () => ({ BootSplashDemo: () => <p>boot splash demo</p> }));
 vi.mock("../components/BlastBallDemo", () => ({ BlastBallDemo: () => <p>blastball game</p> }));
 vi.mock("../components/BlockBlastDemo", () => ({ BlockBlastDemo: () => <p>blockblast game</p> }));
+vi.mock("../components/SplatboxDemo", () => ({ SplatboxDemo: () => <p>splatbox game</p> }));
 
 const renderDemo = (path: string, demos: Demo[] = resume.demos) =>
   renderAt(
@@ -71,6 +72,13 @@ describe("DemoPage", () => {
 
     expect(await screen.findByText("blockblast game")).toBeInTheDocument();
     expect(screen.getByText(/Drag a piece from the tray/)).toBeInTheDocument();
+  });
+
+  it("embeds Splatbox with its controls listed", async () => {
+    renderDemo("/demo/splatbox", [{ id: "splatbox", name: "Splatbox", description: "Paintball.", stack: ["Rust"] }]);
+
+    expect(await screen.findByText("splatbox game")).toBeInTheDocument();
+    expect(screen.getByText(/WASD move/)).toBeInTheDocument();
   });
 
   it("says when there is no such demo", () => {
