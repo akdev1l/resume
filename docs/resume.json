@@ -218,6 +218,13 @@
       "name": "BlockBlast",
       "description": "A block-placement puzzle: drag pieces from a tray of three onto an 8×8 board and clear full rows and columns. The game logic is a platform-independent Rust crate; the browser front end renders with WebGL2 and Dear ImGui, compiled to WebAssembly with Emscripten, and works with mouse and touch.",
       "stack": ["Rust", "WebAssembly", "Emscripten", "WebGL2", "Dear ImGui"]
+    },
+    {
+      "id": "splatbox",
+      "logo": "/logos/demos/splatbox.svg",
+      "name": "Splatbox",
+      "description": "First-person paintball in the browser: tag your friends in peer-to-peer matches over WebRTC, or practice on the range, where every ball drops, slows and drips. The game rules and physics are a deterministic Rust core using Rapier, compiled to WebAssembly; Three.js renders the voxel world, and a Cloudflare Worker with Durable Objects handles matchmaking signaling.",
+      "stack": ["Rust", "Rapier", "WebAssembly", "Three.js", "WebRTC", "Cloudflare Workers"]
     }
   ],
   "projects": [
